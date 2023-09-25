@@ -7,13 +7,21 @@ bibliography: "refs.bib"
 csl: "plos.csl" 
 ---
 
+***
+
+[HUB](hub.html)
+
+*** 
+
 # {.tabset}
 
 ## -  
 
-Science and policy are important activities that involve analysis and inference, but while science is about knowing, policy is about doing. If there's a decision to be made, a policy should use the best science available, but it can't expect the same level of certainty that is demanded by peer reviewed journals. Even if we can't expect that level of certainty, we can apply a similar level of rigor. The question is not what whether the evidence is strong enough to support a strong conclusion, but what course of action is best supported by the evidence. A decision will get made, even if the evidence supporting a decision is weak. 
+Science and policy are important activities that involve analysis and inference, but while science is about knowing, policy is about doing. If there's a decision to be made, a policy should use the best science available. In doing analysis for policy, we can't expect the same level of certainty that is demanded by peer reviewed journals, but we can pursue a similar level of rigor. The question is not what whether the evidence is strong enough to support a strong conclusion, but what course of action is best supported by the evidence. A decision will get made, even if the evidence supporting a decision is weak. The core difference between inference for science and policy is how we weigh the uncertainty. 
 
-Robust analytics are about characterizing and quantifying uncertainty, and then propagating that uncertainty through an analysis. The natural complement to robust analytics is adaptive management. Since health policies are made and adjusted on monthly, annual, or multi-year cycles, it's possible to learn from a decision and adapt. The principles of robust analytics and data management and analytics for health policy need to be taught somewhere. This website -- *Health Analytics for Robust Policy* -- is designed as a resource for people who want to develop, apply, and teach methods to support health policy using the principles of **robust analytics** or **adaptive control.** 
+The inferential framework for policy is being developed under the banner of **robust analytics.** The general notion of robust analysis is that a conclusion would not change if the analysis had been done in a reasonable but slightly different way. Robust policy advice is based on that same notion, but what does it mean to consider other reasonable ways of doing an analysis? Robust analytics are about characterizing and quantifying uncertainty, and then propagating that uncertainty through an analysis with the goal of giving policy advice. 
+
+The natural complement to robust analytics is **adaptive management.** Since health policies are made and adjusted on monthly, annual, or multi-year cycles, it's possible to learn from a decision and adapt. The principles of robust analytics and data management and analytics for health policy need to be taught somewhere. This website -- *Health Analytics for Robust Policy* -- is designed as a resource for people who want to develop, apply, and teach methods to support health policy using the principles of **robust analytics** or **adaptive management.** 
 
 The website is meant to be a guide to material -- concepts, ideas, algorithms, software, commentaries and lessons -- that can support robust analytics. The material is written in R-markdown in a style that could fall anywhere between lecture notes and a user's guide. We don't want this to become a pseudo-journal, so we'll use a chatty tone and to introduce ideas that ought to be handled in greater depth in peer review publications (see the [Style Guide](HARP-Style-Guide.html)). 
 
@@ -21,9 +29,13 @@ The website is meant to be a guide to material -- concepts, ideas, algorithms, s
 
 **September 25, 2023** 
 
-+ This website was born. 
+1. *Hello, World!* -- This website was born. 
 
-+ The core activities of this team are  **R**obust **A**nalytics for **M**alaria **P**olicy (RAMP) and Adaptive Malaria Control. Some of our ideas about robust analytics are in a paper, called [*Spatial Dynamics of Malaria Transmission*](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684){target="_blank"} [@WuSL2023SpatialDynamics]. The article was an attempt to implement some ideas about robust analytics in mathematical framework that was developed with the capability of dealing with *parasite dispersal* and *spatial heterogeneity.* A core idea here is that robust analytics needs frameworks for building models with **scalable complexity.** 
+2. The core activities of this team are  **R**obust **A**nalytics for **M**alaria **P**olicy (RAMP) and Adaptive Malaria Control. Some of our ideas about robust analytics were published recently in [*Spatial Dynamics of Malaria Transmission*](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684){target="_blank"} [@WuSL2023SpatialDynamics]. In the article, we develop a modular computational framework for malaria simulation modeling to implement some ideas about robust analytics. We developed some new mathematics to ensure models would have the capability of dealing with *parasite dispersal* and *spatial heterogeneity.* A core motivation was that robust analytics should be done at the right level of complexity, so frameworks should facilitate **scalable complexity** to make it possible to extend or elaborate on models. The software has been implemented in two software packages: 
+
+    - [exDE: Extensible Differential Equations for Mosquito-Borne Pathogen Modeling](https://dd-harp.github.io/exDE/){target="_blank"}. 
+    
+    - [MicroMoB: Microsimulation for mosquito-borne pathogens](https://dd-harp.github.io/MicroMoB/){target="_blank"}. 
 
 ## Acknowledgements {.tabset}
 
