@@ -2,7 +2,9 @@
 title: "HARP" 
 subtitle: "Health Analytics for Robust Policy"  
 date: "`r format(Sys.time(), '%B %d, %Y')`"
-output: html_document
+output: 
+  html_document: 
+    theme: sandstone 
 bibliography: "refs.bib" 
 csl: "plos.csl" 
 ---
@@ -13,7 +15,7 @@ csl: "plos.csl"
 
 *** 
 
-# {.tabset}
+# {.tabset .tabset-fade .tabset-pills}
 
 ## -  
 
@@ -31,13 +33,10 @@ Ideally, robust advice should includes a recommended course of action, but what 
 
 The natural complement to robust analytics is *adaptive management.* Since health policies are made and adjusted on monthly, annual, or multi-year cycles, it's possible to learn from a decision and adapt. (*As an aside, the focus of adaptive management is not medicine, but policies affecting populations, usually made by national ministries of health.*) The possibility of *learning* asks us to weigh how evidence *could* change our minds about something. Learning in repeated analysis is difficult, so we will need the concepts and methods to support it. Robust analytics and adaptive management ask us to think carefully about the *value of information,* and methods for identifying the value of data we lack. Ideally, robust policy advice would include a prioritized list of data gaps that could be filled to reduce uncertainty the next time a decision must be made. The iterative process of acting and learning is at the core of adaptive management. 
 
-This website -- *Health Analytics for Robust Policy* -- is designed as a resource for people who want to develop, apply, and teach methods to support health policy using the principles of *robust analytics* or *adaptive management.* It is a guide to material -- concepts, ideas, algorithms, software, commentaries and lessons -- that can support robust analytics. The material is written in R-markdown in a style that could fall anywhere between lecture notes, a user's guide, vignettes that teach a single concept, or commentary. At the top of this page, the [HUB](hub.html) is an easy guide to the content. We don't want this to become a pseudo-journal, so we'll use a chatty tone and to introduce ideas that ought to be handled in greater depth in peer review publications (see the [Style Guide](HARP-Style-Guide.html)). 
+This website -- *Health Analytics for Robust Policy* -- is designed as a resource for people who want to develop, apply, and teach methods to support health policy using the principles of *robust analytics* or *adaptive management.* It is a guide to material -- concepts, ideas, algorithms, software, commentaries and lessons -- that can support robust analytics. The material is written in R-markdown in a style that could fall anywhere between lecture notes, a user's guide, vignettes that teach a single concept, or commentary. At the top of this page, the [HUB](hub.html) is an easy guide to the content. We don't want this to become a pseudo-journal, so we'll use a chatty tone and to introduce ideas that ought to be handled in greater depth in peer review publications (see the [Style Guide](HARP-Style-Guide.html)).
 
-*** 
 
-*HARP 1.0, releasaed on Monday, September 25, 2023.* 
-
-## Recent {.tabset}
+## Recent {.tabset .tabset-fade .tabset-pills}
 
 ### - 
 
@@ -62,7 +61,7 @@ We've been working on extending the functionality to include exogenous forcing b
 *Hello, World!* -- This website was born. New stuff goes in the other tab. Over time, as new stuff gets added, the old stuff goes above this in reverse chronological order. 
 
 
-## Appendices {.tabset}
+## Appendices {.tabset .tabset-fade .tabset-pills}
 
 ### Contributors 
 
