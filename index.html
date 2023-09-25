@@ -386,53 +386,63 @@ display: none;
 <div id="section-1" class="section level2">
 <h2>-</h2>
 <p>Science and policy are important activities that involve analysis and
-inference, but while science is about knowing, policy is about doing. If
-there’s a decision to be made, a policy should use the best science
-available. In doing analysis for policy, we can’t expect the same level
-of certainty that is required for publication in peer reviewed journals.
-The question is not whether the evidence is strong enough to support a
-strong conclusion, but what course of action is best supported by the
-evidence. A decision will get made, even if the evidence supporting a
-decision is weak. The core difference between inference for science and
-policy is how we weigh the uncertainty.</p>
-<p>While it may be unreasonable to be certain about any decisions we
-make, it is reasonable to expect a high level of rigor. We are
-developing an inferential framework for policy under the banner of
-<strong>robust analytics.</strong> The general notion of robust analysis
-is that a conclusion would not change if the analysis had been done in a
-reasonable but slightly different way. Robust policy advice is based on
-that same notion. Robust analytics are about characterizing and
-quantifying uncertainty, and then propagating that uncertainty through
-an analysis with the goal of giving policy advice. Ideally, while robust
-advice includes a recommended course of action, it would also include a
-discussion of alternative policies that would be nearly equally good.
-Robust advice could be tenuous, but is well-supported.</p>
-<p>The natural complement to robust analytics is <strong>adaptive
-management.</strong> The focus is not on populations and policies
-affecting populations, not medicine and medical decision making. The
-domain of adaptive management is the set of policies and decisions
-implemented by national ministries of health. Since health policies are
-made and adjusted on monthly, annual, or multi-year cycles, it’s
-possible to learn from a decision and adapt. The possibility of
-<em>learning from a policy</em> asks us to think about how evidence
-<em>could</em> change our minds about something, and we need the
-concepts and methods to support it. Ideally, robust policy advice would
-include a prioritized list of data gaps that could be filled to reduce
-uncertainty the next time a decision must be made. Robust analytics and
-adaptive management ask us to think carefully about the <em>value of
-information.</em></p>
+inference, but while science is about knowing, policy is about doing.
+Policy should use the best science available, but even if evidence is
+weak, a decision will get made. Unlike science, the question is not
+whether the evidence is strong enough, but what course of action is best
+supported by the evidence. The core difference between inference for
+science and policy is in how we weigh the uncertainty.</p>
+<p>While it may be unreasonable to expect policies to wait for the same
+level of certainty that is required for publication in peer reviewed
+journals, it is reasonable to expect a high level of rigor. To serve as
+a guide for policy, we have been developing an inferential framework for
+policy under the banner of <em>robust analytics.</em> The general notion
+is that a robust conclusion would not change if the analysis had been
+done in a reasonable but slightly different way. Robust analytics are
+based on roughly the same notion. In practical terms, this means:</p>
+<ul>
+<li><p>going to great lengths to characterize and quantify
+<em>uncertainty;</em></p></li>
+<li><p>developing ensembles of policy scenarios such that while each
+scenario is sampled from the uncertainty at random, total uncertainty is
+covered by the ensemble;</p></li>
+<li><p>evaluating the policy advice that emerges from the ensemble of
+scenarios.</p></li>
+</ul>
+<p>Ideally, robust advice should includes a recommended course of
+action, but what the ensemble may not have a natural consensus. The
+robust advice would recommend a course of action, but it would include a
+discussion of alternative policies that appear to be nearly as good.
+Robust advice can be tenuous, but it must be well-supported.</p>
+<p>The natural complement to robust analytics is <em>adaptive
+management.</em> Since health policies are made and adjusted on monthly,
+annual, or multi-year cycles, it’s possible to learn from a decision and
+adapt. (<em>As an aside, the focus of adaptive management is not
+medicine, but policies affecting populations, usually made by national
+ministries of health.</em>) The possibility of <em>learning</em> asks us
+to weigh how evidence <em>could</em> change our minds about something.
+Learning in repeated analysis is difficult, so we will need the concepts
+and methods to support it. Robust analytics and adaptive management ask
+us to think carefully about the <em>value of information,</em> and
+methods for identifying the value of data we lack. Ideally, robust
+policy advice would include a prioritized list of data gaps that could
+be filled to reduce uncertainty the next time a decision must be made.
+The iterative process of acting and learning is at the core of adaptive
+management.</p>
 <p>This website – <em>Health Analytics for Robust Policy</em> – is
 designed as a resource for people who want to develop, apply, and teach
-methods to support health policy using the principles of <strong>robust
-analytics</strong> or <strong>adaptive management.</strong> It is a
-guide to material – concepts, ideas, algorithms, software, commentaries
-and lessons – that can support robust analytics. The material is written
-in R-markdown in a style that could fall anywhere between lecture notes,
-a user’s guide, vignettes that teach a single concept, or commentary. At
+methods to support health policy using the principles of <em>robust
+analytics</em> or <em>adaptive management.</em> It is a guide to
+material – concepts, ideas, algorithms, software, commentaries and
+lessons – that can support robust analytics. The material is written in
+R-markdown in a style that could fall anywhere between lecture notes, a
+user’s guide, vignettes that teach a single concept, or commentary. At
 the top of this page, the <a href="hub.html">HUB</a> is an easy guide to
 the content. We don’t want this to become a pseudo-journal, so we’ll use
 a chatty tone and to introduce ideas that ought to be handled in greater
 depth in peer review publications (see the <a href="HARP-Style-Guide.html">Style Guide</a>).</p>
+<hr />
+<p><em>HARP 1.0, releasaed on Monday, September 25, 2023.</em></p>
 </div>
 <div id="recent" class="section level2 tabset">
 <h2 class="tabset">Recent</h2>
@@ -441,14 +451,16 @@ depth in peer review publications (see the <a href="HARP-Style-Guide.html">Style
 <p><strong>September 25, 2023</strong></p>
 <p>The core activities of this team are <strong>R</strong>obust
 <strong>A</strong>nalytics for <strong>M</strong>alaria
-<strong>P</strong>olicy (RAMP) and Adaptive Malaria Control. Some of our
-ideas about robust analytics were published recently in <em>Spatial
-Dynamics of Malaria Transmission</em> <span class="citation">[1]</span>
-– open access online at <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684" target="_blank">PLoS Comp Bio</a>.</p>
-<p>In that article, we develop a modular computational framework for
-malaria simulation modeling to implement some ideas that are at the core
-of robust analytics. The article includes some new mathematics to ensure
-models would have the capability of dealing with <em>parasite
+<strong>P</strong>olicy (RAMP) and Adaptive Malaria Control. Some of the
+ideas we need for RAMP were published recently in <em>Spatial Dynamics
+of Malaria Transmission</em> <span class="citation">[1]</span> – you can
+read it online at <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684" target="_blank">PLoS Comp Bio</a>.</p>
+<p>We developed a new mathematical and computational framework for
+malaria simulation modeling that was modular, flexible, and extensible.
+The modularity was enforced through rigorous interfaces describing blood
+feeding and parasite transmission; and egg laying and emergence. The
+article includes some new methods for building and analyzing models to
+ensure they would have the capability of dealing with <em>parasite
 dispersal</em> and <em>spatial heterogeneity.</em> A core motivation was
 that robust analytics should be done at the right level of complexity,
 so frameworks should facilitate <strong>scalable complexity</strong> to
@@ -462,14 +474,15 @@ Modeling</a>.</p></li>
 pathogens</a>.</p></li>
 </ul>
 <p>We’ve been working on extending the functionality to include
-exogenous forcing by weather and malaria control. Check back for some
-tutorials.</p>
+exogenous forcing by weather and malaria control. Check back later for
+new developments, and maybe for some tutorials.</p>
 </div>
 <div id="older" class="section level3">
 <h3>Older</h3>
 <p><strong>September 25, 2023</strong></p>
 <p><em>Hello, World!</em> – This website was born. New stuff goes in the
-other tab.</p>
+other tab. Over time, as new stuff gets added, the old stuff goes above
+this in reverse chronological order.</p>
 </div>
 </div>
 <div id="appendices" class="section level2 tabset">
