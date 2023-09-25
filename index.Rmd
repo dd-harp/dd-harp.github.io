@@ -54,11 +54,24 @@ We've been working on extending the functionality to include exogenous forcing b
 
 ### Contributors 
 
-+ David L Smith is a Professor of Health Metrics Sciences at the University of Washington. 
++ David L Smith is a [Professor](https://depts.washington.edu/healthms/people/david-smith/){target="_blank"}  in the Department [Health Metrics Sciences](https://depts.washington.edu/healthms/){target="_blank"}, [School of Medicine](https://www.uwmedicine.org/school-of-medicine){target="_blank"}, [University of Washington](https://www.washington.edu/){target="_blank"}. It's a common name, so Dave curates his [Google Scholar Page](https://scholar.google.com/citations?user=KsqPjT8AAAAJ&hl=en). 
 
-+ Austin R Carter is a research scientist at the Institute for Health Metrics and Evaluation, University of Washington  
++ Austin R Carter is a research scientist at the Institute for Health Metrics and Evaluation, University of Washington.  
 
 ### Funding  
 
+This research was supported by several grants: 
+
++ We gratefully acknowledge a grant from the Bill and Melinda Gates Foundation (INV 030600). The grant funds an active collaboration with Uganda's National Malaria Control Division. Adaptive Malaria Control implements research funded by several previous grants from BMGF. 
+
++ We gratefully acknowledge a grant to support development of **Adaptive Vector Control,** in collaboration with the *Bioko Island Malaria Elimination Project,*  the National Institute of Allergies and Infectious Diseases (R01 AI163398). 
+
++ Many of the ideas were developed through a grant from the National Institutes of Allergies and Infectious Diseases (2U19AI089674) that funded  [*Program for Resistance, Immunology, Surveillance, and Modeling of Malaria in Uganda* (PRISM)](https://www.niaid.nih.gov/research/east-africa-international-center-excellence-malaria-research){target="_blank"}, which was an [International Center of Excellence for Malaria Research (ICEMR)](https://www.niaid.nih.gov/research/excellence-malaria-research){target="_blank"}. 
+
++ Software to support modeling for West Nile Virus transmission dynamics and control in Harris County, Texas was funded by a grant from the National Science Foundation, Directorate for Technology, Innovation, and Partnerships (TIP) as part of the Convergence Accelerator Program (NSF 2040688)
+
++ The research grew out of mosquito working groups discussions as part of RAPIDD (Research and Policy for Infectious Disease Dynamics). Over that time, many of us benefitted from the unwavering support and inspiration of F. Ellis McKenzie. 
+
+The funders had no role in the development of this material. 
 
 ### Refs 
