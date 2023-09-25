@@ -1,7 +1,6 @@
 ---
 title: "HARP" 
 subtitle: "Health Analytics for Robust Policy"  
-author: "David L Smith, Austin R Carter"
 date: 'Mach 6, 2023'
 output: html_document
 bibliography: "refs.bib" 
@@ -12,7 +11,7 @@ csl: "plos.csl"
 
 ## -  
 
-Science and policy are important activities that involve analysis and inference, but while science is about knowing, policy is about doing. If there's a decision to be made, policy should use the best science available, but it can't expect the same level of certainty that is demanded by peer reviewed journals. Even if we can't expect that level of certainty, we can apply a similar level of rigor. The question is not what whether the evidence is strong enough to support a strong conclusion, but what course of action is best supported by the evidence. A decision will get made, even if the evidence supporting a decision is weak. 
+Science and policy are important activities that involve analysis and inference, but while science is about knowing, policy is about doing. If there's a decision to be made, a policy should use the best science available, but it can't expect the same level of certainty that is demanded by peer reviewed journals. Even if we can't expect that level of certainty, we can apply a similar level of rigor. The question is not what whether the evidence is strong enough to support a strong conclusion, but what course of action is best supported by the evidence. A decision will get made, even if the evidence supporting a decision is weak. 
 
 Robust analytics are about characterizing and quantifying uncertainty, and then propagating that uncertainty through an analysis. The natural complement to robust analytics is adaptive management. Since health policies are made and adjusted on monthly, annual, or multi-year cycles, it's possible to learn from a decision and adapt. The principles of robust analytics and data management and analytics for health policy need to be taught somewhere. This website -- *Health Analytics for Robust Policy* -- is designed as a resource for people who want to develop, apply, and teach methods to support health policy using the principles of **robust analytics** or **adaptive control.** 
 
@@ -22,12 +21,19 @@ The website is meant to be a guide to material -- concepts, ideas, algorithms, s
 
 **September 25, 2023** 
 
-The core activities of this team are  **R**obust **A**nalytics for **M**alaria **P**olicy (RAMP) and Adaptive Malaria Control. Some of our ideas about robust analytics are in a paper, called *Spatial Dynamics of Malaria Transmission* [@WuSL2023SpatialDynamics]. 
++ This website was born. 
 
-## Contributors 
++ The core activities of this team are  **R**obust **A**nalytics for **M**alaria **P**olicy (RAMP) and Adaptive Malaria Control. Some of our ideas about robust analytics are in a paper, called [*Spatial Dynamics of Malaria Transmission*](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684){target="_blank"} [@WuSL2023SpatialDynamics]. The article was an attempt to implement some ideas about robust analytics in mathematical framework that was developed with the capability of dealing with *parasite dispersal* and *spatial heterogeneity.* A core idea here is that robust analytics needs frameworks for building models with **scalable complexity.** 
+
+## Acknowledgements {.tabset}
+
+### Contributors 
 
 + David L Smith is a Professor of Health Metrics Sciences at the University of Washington. 
 
 + Austin R Carter is a research scientist at the Institute for Health Metrics and Evaluation, University of Washington  
+
+### Funding  
+
 
 ## Refs 
