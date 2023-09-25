@@ -1,5 +1,6 @@
 ---
-title: "Health Analytics for Robust Policy"  
+title: "HARP" 
+subtitle: "Health Analytics for Robust Policy"  
 author: "David L Smith, Austin R Carter"
 date: 'Mach 6, 2023'
 output: html_document
