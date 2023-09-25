@@ -1,0 +1,22 @@
+---
+title: "Health Analytics for Robust Policy"  
+subtitle: "A Guide to Style" 
+author: "David L Smith"
+date: 'Mach 6, 2023'
+output: html_document
+bibliography: "refs.bib" 
+csl: "plos.csl" 
+---
+
+***
+[HARP](index.html)
+
+*** 
+
+# {.tabset}
+
+## -  
+
+A guide to style. 
+
+## Refs 
