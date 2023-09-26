@@ -61,7 +61,7 @@ segments(-3, 0, 3, 0, col = grey(0.8))
 
 + References are strongly encouraged. The bibliography is `refs.bib` using the `plos` citation style. To add a citiation, use `[@cite-key]`. 
 
-+ If there are any references, the last tab should be called `Refs`. For example, this is a citation to *Malaria: Principles and Practice of Malariology* [@WernsdorferWH1988MalariaPrinciples]. 
++ If there are any references, the last tab should be called `Refs`. For example, `[@WernsdorferWH1988MalariaPrinciples]` is a citation to *Malaria: Principles and Practice of Malariology* [@WernsdorferWH1988MalariaPrinciples]. 
 
 + If you want to cite something but you can't find it in `refs.bib,` tell Dave it's missing and send a link.
 
