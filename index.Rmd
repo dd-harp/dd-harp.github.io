@@ -21,7 +21,7 @@ csl: "plos.csl"
 
 Science and policy are important activities that involve analysis and inference, but while science is about knowing, policy is about doing. Policy should use the best science available, but even if evidence is weak, policy decisions must be made. Unlike science, the question is not whether the evidence is strong enough, but what course of action is best supported by the evidence. The core difference between inference for science and policy is how to weigh the *uncertainty.*
 
-While it may be unreasonable to expect policies to wait for the same level of certainty that is required for publication in peer reviewed journals, it is not unreasonable to expect a high level of rigor. To serve as a guide for policy, we have been developing an inferential framework under the banner of *robust analytics.* The general notion is that a robust conclusion would not change if the analysis had been done in a reasonable but slightly different way. Robust analytics are based on roughly the same notion. In practical terms, this means:
+While it may be unreasonable to expect policies to wait for the same level of certainty that is required for publication in peer reviewed journals, it is not unreasonable to expect a high level of rigor. To serve as a guide for policy, we have been developing an inferential framework under the banner of *robust analytics.* In policy, robust advice would not change if the supporting analysis had been done in a reasonable but slightly different way. In practical terms, robust analytics involve:
 
 + going to great lengths to characterize and quantify uncertainty; 
 
