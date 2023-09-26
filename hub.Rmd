@@ -1,10 +1,13 @@
 ---
 title: "Navigation Hub for HARP" 
-output: html_document
+output: 
+  html_document: 
+    theme: sandstone 
 ---
 
 ***
 
-[HARP](index.html) | [Style Guide](HARP-Style-Guide.html)
+[HARP](index.html) :: [Style Guide](HARP-Style-Guide.html)
 
 *** 
+
