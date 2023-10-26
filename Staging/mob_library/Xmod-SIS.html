@@ -11,7 +11,7 @@
 
 
 
-<title>Navigation Hub for HARP</title>
+<title>The SIS model for malaria</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -263,6 +263,28 @@ if (window.hljs) {
 
 
 
+<style type="text/css">
+
+div.csl-bib-body { }
+div.csl-entry {
+clear: both;
+}
+.hanging div.csl-entry {
+margin-left:2em;
+text-indent:-2em;
+}
+div.csl-left-margin {
+min-width:2em;
+float:left;
+}
+div.csl-right-inline {
+margin-left:2em;
+padding-left:1em;
+}
+div.csl-indent {
+margin-left: 2em;
+}
+</style>
 
 
 
@@ -360,22 +382,131 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">Navigation Hub for HARP</h1>
+<h1 class="title toc-ignore">The <code>SIS</code> model for malaria</h1>
+<h3 class="subtitle"><code>mob_library</code></h3>
 
 </div>
 
 
 <hr />
-<p><a href="index.html">HARP</a> :: <a href="HARP-Style-Guide.html">Style Guide</a></p>
+<p><a href="../RAMP-Model-Library-dev.html"><span class="math inline">\(\unparrow\)</span> RAMP</a> || <a href="mob_library.html">mob_library</a> | <a href="Xmod.html">Xmod</a></p>
 <hr />
-<p><strong>Malaria</strong></p>
-<ul>
-<li><p>Coming Soon</p>
-<ul>
-<li><p>Robust Analytics for Malaria Policy (RAMP)</p></li>
-<li><p>Adaptive Malaria Control</p></li>
-</ul></li>
-</ul>
+<pre class="r"><code>purl(&quot;Xmod-SIS.Rmd&quot;, output = &quot;Xmod-SIS.R&quot;, documentation = 0, quiet=TRUE)</code></pre>
+<div id="section" class="section level1 tabset">
+<h1 class="tabset"></h1>
+<div id="odot" class="section level2">
+<h2><span class="math inline">\(\odot\)</span></h2>
+</div>
+<div id="sis" class="section level2">
+<h2>SIS</h2>
+<p>The SIS model, as it is now called, is a simple compartmental model
+originally used by Ross <span class="citation">[<a href="#ref-RossR1908">1</a>–<a href="#ref-SmithDL2012_RossMacdonald">3</a>]</span>. Here, we use it
+as-is to illustrate some design features of <code>exDE</code>.</p>
+</div>
+<div id="exde" class="section level2 tabset">
+<h2 class="tabset">exDE+</h2>
+<div id="pr" class="section level3 tabset">
+<h3 class="tabset">pr</h3>
+<div id="plot" class="section level4">
+<h4>plot</h4>
+<pre class="r"><code>plot_X.SIS = function(model, nix=NULL){with(model$orbits,{
+ ix = 1:length(time)
+ if(!is.null(nix)) ix = ix[-nix]
+ if(model$nStrata==1){
+    plot(time[ix], X[ix], type = &quot;l&quot;, ylim = range(0, X), ylab = &quot;# Infected&quot;, xlab = &quot;Time&quot;)
+  } 
+  if(model$nStrata&gt; 1) {
+    plot(time[ix], X[ix, 1], type = &quot;n&quot;, ylim = range(0, X), ylab = &quot;# Infected&quot;, xlab = &quot;Time&quot;)
+    for(i in 1:model$nStrata){
+      lines(time[ix], X[ix,i], lty = i)
+    }
+  } 
+})}
+#plot_X(mod534$sols, mod534)</code></pre>
+<pre class="r"><code>plot_PR.SIS = function(model, nix=NULL){with(model$orbits,{
+  ix = 1:length(time)
+  if(!is.null(nix)) ix = ix[-nix]
+  if(model$nStrata==1){
+    plot(time[ix], pr[ix], type = &quot;l&quot;, ylim = range(0, pr), ylab = &quot;# Infected&quot;, xlab = &quot;Time&quot;)
+  } 
+  if(model$nStrata&gt; 1) {
+    plot(time[ix], pr[ix, 1], type = &quot;n&quot;, ylim = range(0, pr), ylab = &quot;# Infected&quot;, xlab = &quot;Time&quot;)
+    for(i in 1:model$nStrata){
+      lines(time[ix], pr[ix,i], lty = i)
+    }
+  } 
+})}
+#plot_PR(mod534$sols, mod534)</code></pre>
+</div>
+<div id="demo" class="section level4">
+<h4>demo</h4>
+<pre class="r"><code>Lo = list() 
+Lo$Lt = function(t, pars){(1 + sin(2*pi*t/365))^2}</code></pre>
+<pre class="r"><code>xde_setup(&quot;aron_may&quot;, Lopts=Lo) -&gt; aron_may 
+xde_solve(aron_may, Tmax=2000, dt=10) -&gt; aron_may </code></pre>
+<pre class="r"><code>plot_PR(aron_may)</code></pre>
+</div>
+</div>
+<div id="io" class="section level3 tabset">
+<h3 class="tabset">IO</h3>
+<div id="write" class="section level4">
+<h4>write</h4>
+<pre class="r"><code>write_X.SIS = function(model){
+  outfile = paste(model$modelName, &quot;/Xin.R&quot;, sep=&quot;&quot;)
+  write(paste(&quot;Xopts = list()&quot;), outfile)
+  write(paste(&quot;Xopts$Xname = &#39;SIS&#39;&quot;), outfile, append=TRUE)
+  
+  outfile = paste(model$modelName, &quot;_Xpar.csv&quot;, sep=&quot;&quot;)
+  Xmatrix = with(model$Xpar, data.frame(b=b, c=c, r=r))
+  write.table(Xmatrix, outfile, sep=&quot;,&quot;) 
+}</code></pre>
+</div>
+<div id="read" class="section level4">
+<h4>read</h4>
+<pre class="r"><code>read_X.SIS = function(pars){
+  Xfilename &lt;- paste(prefix, &quot;_Xpar.csv&quot;, sep=&quot;&quot;)
+  Xpars &lt;- as.data.frame(read.table(Xfilename, sep=&quot;,&quot;)) 
+  Xopts$b = Xpars$b  
+  Xopts$c = Xpars$c  
+  Xopts$r = Xpars$r  
+  
+  pars$Xname &lt;- &quot;SIS&quot;
+  pars = setup_X(pars, Xname, Xopts)
+  return(pars)
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="micromob" class="section level2">
+<h2>MicroMoB</h2>
+</div>
+<div id="xde2micro" class="section level2">
+<h2>xde2micro</h2>
+</div>
+<div id="dagger" class="section level2">
+<h2><span class="math inline">\(\dagger\)</span></h2>
+<p><strong>References</strong></p>
+<div id="refs" class="references csl-bib-body">
+<div id="ref-RossR1908" class="csl-entry">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">Ross
+R. Report on the <span>Prevention</span> of <span>Malaria</span> in
+<span>Mauritius</span>. <span>London</span>: <span>Waterlow</span>;
+1908. </div>
+</div>
+<div id="ref-RossR1911Book" class="csl-entry">
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">Ross
+R. The <span>Prevention</span> of <span>Malaria</span>. 2nd ed.
+<span>London</span>: <span>John Murray</span>; 1911. </div>
+</div>
+<div id="ref-SmithDL2012_RossMacdonald" class="csl-entry">
+<div class="csl-left-margin">3. </div><div class="csl-right-inline">Smith DL, Battle KE, Hay SI, Barker CM, Scott
+TW, McKenzie FE. Ross, <span>Macdonald</span>, and a theory for the
+dynamics and control of mosquito-transmitted pathogens. PLoS Pathog.
+2012;8: e1002588. doi:<a href="https://doi.org/10.1371/journal.ppat.1002588">10.1371/journal.ppat.1002588</a></div>
+</div>
+</div>
+</div>
+</div>
 
 
 
