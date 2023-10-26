@@ -10,9 +10,9 @@
 
 
 
-<meta name="date" content="2023-10-17" />
+<meta name="date" content="2023-10-13" />
 
-<title>Adaptive Malaria Control</title>
+<title>Vector Control in exDE</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -361,296 +361,21 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">Adaptive Malaria Control</h1>
-<h4 class="date">October 17, 2023</h4>
+<h1 class="title toc-ignore">Vector Control in exDE</h1>
+<h4 class="date">October 13, 2023</h4>
 
 </div>
 
 
-<p><code>~/Adaptive Malaria Control/Adaptive-Malaria-Control.Rmd</code></p>
+<p><code>~/exDE/exDE.Rmd</code></p>
 <hr />
 <p><a href="../HUB.html">HUB</a> – <a href="../Roadmap.html">Roadmap</a>
-– <a href="../RAMP-Model-Library.html">Library</a> – <a href="../Glossary.html">Glossary</a></p>
+– <a href="../RAMP-Model-Library.html">Library</a> – <a href="exDE.html">exDE</a></p>
 <hr />
 <div id="section" class="section level1 tabset tabset-fade tabset-pills">
 <h1 class="tabset tabset-fade tabset-pills"></h1>
 <div id="odot" class="section level2 tabset tabset-fade tabset-pills">
 <h2 class="tabset tabset-fade tabset-pills"><span class="math inline">\(\odot\)</span></h2>
-<p><strong>Adaptive malaria control</strong> describes an iterative
-process of robust analytics and engagement to help malaria programs make
-operational decisions, optimize the allocation of resources, improve
-technical efficiency, and develop evidence-based policies to reduce
-burden and eliminate malaria. Robust analytics to support malaria
-policies involve data collection and curation, the transformation of
-data into information through data analysis, and translation of
-information into policy advice through simulation-based analytics.
-Malaria is managed on monthly and annual cycles, and on multi-year
-funding and strategic planning cycles. Adaptive malaria control must
-support these policy cycles by developing information systems –
-including protocols and procedures for data collection, data curation,
-and repeated routine analyses – to ensure that the analysis is
-consistent, that it is of the highest quality, and that it is updated to
-be responsive to changing needs. Through careful analysis of uncertainty
-and through consultation with program managers, surveillance systems are
-reviewed to identify key data gaps, and plans are made to fill those
-gaps and improve future decisions.</p>
-<hr />
-<p><em>If some of the terms are unfamiliar, please use the <a href="../Glossary.html">Glossary</a>.</em> <em>For a longer discussion,
-please read the vignette, <a href="What-Is-Adaptive-Malaria-Control.html"><strong>What is Adaptive
-Malaria Control?</strong></a>.</em></p>
-<hr />
-<p><span class="math inline">\(\odot\)</span> – The landing tab (this
-tab)</p>
-<p><strong><code>Overview</code></strong> – An overview of <em>Adaptive
-Malaria Control</em></p>
-<p><span class="math inline">\(\boxplus\)</span> – links to vignettes
-&amp; supporting documents</p>
-<p><a href="#dagger"><span class="math inline">\(\dagger\)</span></a> –
-document information, including references</p>
-</div>
-<div id="overview" class="section level2 tabset tabset-fade tabset-pills">
-<h2 class="tabset tabset-fade tabset-pills">Overview</h2>
-<div id="oplus" class="section level3">
-<h3><span class="math inline">\(\oplus\)</span></h3>
-<p>Adaptive malaria control is designed to support malaria programs with
-a large set of tasks:</p>
-<ul>
-<li><p><code>Data</code> - data systems and curation</p></li>
-<li><p><code>Reporting</code> - routine reporting based on analyses
-developed around HMIS surveillance cycles</p></li>
-<li><p><code>Malaria Intelligence</code> - development of malaria
-intelligence</p></li>
-<li><p><code>Core Analytics</code> - analysis to develop and use support
-policies and resource allocation.</p></li>
-<li><p><code>Adapting</code> - identification of critical data
-gaps</p></li>
-</ul>
-</div>
-<div id="data" class="section level3">
-<h3>Data</h3>
-<p><strong>Data Systems and Curation</strong> are designed to provide a
-stable platform for analysis.</p>
-<ul>
-<li><p><strong>Data Systems</strong> must be set up that so that all the
-data are stored in a single place, making it possible for an analysis to
-use multiple data sources, or even all available data. The databases
-should be designed so that they can be updated with new data in a timely
-way. The data are effectively <em>version controlled:</em> at any
-moment, it should be possible to recreate an analysis using the data
-exactly as they were accessed at any other moment.</p></li>
-<li><p><strong>Data Curation:</strong> Since there are many data types
-that will be needed, robust analytics relies on well-developed and
-well-maintained <em>data ontologies.</em></p></li>
-<li><p><strong>Data Cleaning:</strong> A procedure is established for
-routine review of new data. Potential outliers are flagged. If possible,
-corrected values are provided by district managers. Values are imputed
-for missing / outliered data.</p></li>
-</ul>
-<hr />
-<p><strong>Key Data Sources</strong> for adaptive malaria control
-include the following:</p>
-<ul>
-<li><p><strong>HMIS:</strong> The only data collected frequently enough
-to manage malaria comes through the national Health Management
-Information Systems (HMIS), including:</p>
-<ul>
-<li><p><strong>Routine Clinical Surveillance</strong> inlcudes
-information about malaria and suspected malaria in outpatient and
-inpatient visits. Data includes testing,</p></li>
-<li><p><strong>Entomolotical Surveillance</strong></p></li>
-</ul></li>
-<li><p><strong>Research Data</strong></p></li>
-<li><p><strong>Environmental Covariates</strong></p></li>
-<li><p><strong>Human Demography</strong></p></li>
-<li><p><strong>Human Population Density</strong></p></li>
-</ul>
-</div>
-<div id="reporting" class="section level3">
-<h3>Reporting</h3>
-<p><strong>Routine Analyses and Reports</strong> are repeated every
-month based on well-established protocols and procedures.</p>
-<ul>
-<li><p><strong>Nowcasting / Routine Reporting:</strong> A schedule is
-established for routine reporting, established by malaria programs. A
-semi-automated and well-documented procedure is developed to produce
-reports, which are disseminated in a timely way.</p></li>
-<li><p><strong>Outbreaks</strong></p>
-<ul>
-<li><p><strong>Outbreak Monitoring :</strong> The malaria program will
-establish a national outbreak stratification system. On a schedule
-determined by the malaria program, routine surveillance data are
-evaluated using an <em>outbreak detection protocol.</em> A report is
-prepared and sent to the malaria program for review.</p></li>
-<li><p><strong>Outbreak Stratification</strong> The malaria program
-reviews the outbreak report and reviews the outbreak status of each
-district (or other relevant unit). For example, a simple scheme is
-<em>outbreak</em> or <em>not in outbreak.</em> The outbreak status is
-updated whenever an outbreak starts or ends.</p></li>
-<li><p><strong>Outbreak Response:</strong> A decision made about whether
-or not to respond to an outbreak with enhanced outbreak response is
-weighed against enhanced responses to high-burden areas of
-Uganda.</p></li>
-</ul></li>
-<li><p><strong>Short-term Forecast:</strong> As part of developing and
-testing early warning systems, a forecast for the next two months is
-made.</p></li>
-<li><p><strong>Drug Availability:</strong> A review of all anti-malarial
-drug stock-outs…</p></li>
-<li><p><strong>Malaria Control:</strong> A monthly review of current
-malaria control resources <em>vs.</em> needs</p></li>
-</ul>
-</div>
-<div id="malaria-intelligence" class="section level3">
-<h3>Malaria Intelligence</h3>
-<p><a href="../Malaria%20Intelligence/Malaria-Intelligence.html"><strong>Malaria
-Intelligence:</strong></a> – general knowledge about malaria and
-site-specific information about human populations, mosquitoes, health
-systems, and malaria parasites that can help to guide malaria decisions,
-including:</p>
-<ul>
-<li><p><a href="../Malaria%20Intelligence/Transmission-Intensity.html"><strong>Transmission
-Intensity:</strong></a> – The incidence of malaria, population immunity,
-outcomes of malaria control, and almost everything we measure in malaria
-epidemiology are affected by malaria transmission intensity, its
-seasonality, and long-term trends driven by changing socio-economic
-factors and climate. Planning for malaria control must be based on an
-understanding of ambient transmission as a changing baseline that has
-been modified by vector control and drug taking. A core need for malaria
-intelligence is thus to develop a quantitative understanding of malaria
-transmission intensity and to estimate it at the appropriate level
-granularity to support national malaria policies and decisions. RAMP
-defines transmission intensity in terms of the annual <em>entomological
-inoculation rate</em> (aEIR), and for planning, we convert the
-a<em>Pf</em>EIR ito estimates of the basic and adjusted reproductive
-numbers, <span class="math inline">\(R_0\)</span> and <span class="math inline">\(R_C\)</span>. RAMP algorithms estimate the PfEIR
-based on the PfPR surfaces generated by the Malaria Atlas Project (MAP),
-and converted based on algorithms that use paired estimates of the PfPR
-and PfEIR from research studies [1]. A core need for malaria programs is
-to understand malaria transmission intensity, defined by the annual
-<em>entomological inoculation rate</em> (aEIR), and through it, to
-develop estimates of the basic and adjusted reproductive numbers, <span class="math inline">\(R_0\)</span> and <span class="math inline">\(R_C\)</span>.</p>
-<ul>
-<li><p><strong>Seasonality:</strong> A core need for malaria programs is
-to characterize the normal seasonal patterns of malaria transmission and
-their causes. Weather plays an important role in setting the baseline
-levels of malaria transmission, so programs can benefit from
-understanding the effects of <em>rainfall</em> and <em>hydrology,</em>
-<em>temperature</em> and <em>humidity</em> on local transmission. In
-some places, seasonal travel, including labor migration, contributes to
-malaria cases.</p></li>
-<li><p><strong>Baseline:</strong> – for planning purposes, malaria
-programs must begin to understand the effect sizes of malaria control,
-and reconstructed. These ideas are embodied in two measures of potential
-transmission, the basic and adjusted reproductive numbers, <span class="math inline">\(R_0\)</span> and <span class="math inline">\(R_C\)</span>. The basic reproductive number
-describes transmission at a counterfactual <em>baseline,</em> while the
-adjusted reproductive number describes a system that has been modified
-by malaria control.</p></li>
-</ul></li>
-<li><p><strong>Care Seeking:</strong> It is critical for malaria
-programs to understand how people seek care for malaria and other
-diseases, including care seeking in public <em>vs.</em> private
-facilities, compliance with recommended drug regimens.</p></li>
-<li><p><strong>Vector Ecology:</strong> There is a need to understand
-the distribution of various vector species, their distributions,
-behaviors, and ecology.</p></li>
-<li><p><strong>Health System:</strong> How well are the facilities run?
-What do the facilities need to improve?</p></li>
-<li><p><strong>Humans:</strong> How well are the local populations
-educated about malaria? How committed are they to its demise?</p></li>
-<li><p><strong>Environmental Drivers of Transmission:</strong> Weather
-plays an important role in malaria. Ideally, as new weather data, vector
-control coverage data, and routine surveillance are added each month,
-and a short-term malaria forecast that has measurable predictions should
-be generated.</p></li>
-<li><p><strong>Anti-malarial Drug Resistance:</strong></p></li>
-<li><p><strong>Insecticide Resistance:</strong></p></li>
-</ul>
-</div>
-<div id="core-analytics" class="section level3">
-<h3>Core Analytics</h3>
-<p>Analytics to support everything from <strong>Monitoring &amp;
-Evaluation</strong> to <strong>Strategic Planning</strong> are linked
-through a synthetic analysis of the evidence using simulation-based
-analytics.</p>
-<ul>
-<li><p><strong>Monitoring &amp; Evaluation:</strong> There is a need for
-rolling evaluations of the effectiveness of interventions. To make an
-accurate assessment, malaria must be understood as a baseline that
-changes because of weather and other factors, and that has been modified
-by malaria control.</p></li>
-<li><p><strong>Forecasting &amp; Early Warning
-Systems:</strong></p></li>
-<li><p><strong>Stratification:</strong> Based on malaria intelligence,
-the country is stratified for malaria control.</p></li>
-</ul>
-</div>
-<div id="planning-advocacy" class="section level3">
-<h3>Planning &amp; Advocacy</h3>
-<ul>
-<li><p><strong>Baseline:</strong> The baseline is an unobservable
-counterfactual that informs almost all of the policy decisions.
-Countries must make some attempt to reconstruct a baseline, with
-associated uncertainty, as a basis</p></li>
-<li><p><strong>Scenario Planning</strong> is a core activity for
-decision support. New scenarios are developed in consultation with the
-malaria program. This is a list of activities that could</p></li>
-<li><p><strong>Optimizing Resource Allocation:</strong> A comprehensive
-analysis of malaria control scenarios is run and evaluated.</p></li>
-<li><p><strong>Averted / Avertable Burden:</strong> Each year, we
-reconstruct a counterfactual baseline to estimate the averted burden. We
-take a look at the avertable burden in light of</p></li>
-<li><p><strong>Strategic Planning:</strong> Every five years, the basis
-for the national strategic plan is reviewed.</p></li>
-<li><p><strong>Anti-malarial Drug Resistance Planning:</strong> The
-national strategy to manage drug and insecticide resistance is reviewed
-in light of any new data.</p></li>
-</ul>
-</div>
-<div id="adapting-to-uncertainty" class="section level3">
-<h3>Adapting to Uncertainty</h3>
-<ul>
-<li><p><strong>Critical Review of Protocols and Procedures:</strong> On
-a regular bases, each one of the routine analyses is reviewed.</p></li>
-<li><p><strong>Comprehensive Assessment of
-Uncertainty:</strong></p></li>
-<li><p><strong>Adaptive Studies &amp; Adaptive
-Sampling:</strong></p></li>
-</ul>
-</div>
-</div>
-<div id="boxplus" class="section level2 tabset tabset-fade tabset-pills">
-<h2 class="tabset tabset-fade tabset-pills"><span class="math inline">\(\boxplus\)</span></h2>
-<ul>
-<li><p><a href="What-Is-Adaptive-Malaria-Control.html">What Is Adaptive
-Malaria Control?</a> – A Vignette</p></li>
-<li><p><a href="RAMP.html">RAMP</a> – A Vignette</p></li>
-<li><p>A discussion of important differences in inferential methods for
-<a href="../Analytics/Analytics_vs_Science.html">Scientific Research
-<em>vs.</em> Analytics</a></p></li>
-<li><p>What do we mean by <a href="../Analytics/Robust-Analytics.html">Robust Analytics?</a></p></li>
-<li><p>What do we mean by <a href="../Analytics/Simulation-Based-Analytics.html">Simulation-Based
-Analytics?</a></p></li>
-<li><p>An overview of <a href="../Model%20Building/Malaria-Models.html">Malaria
-Models</a></p></li>
-<li><p>Exerpts from the <a href="../BIMEP/BIMEP-NIH-Grant.html">NIH
-Grant</a>, “Spatial Targeting and Adaptive Vector Control for Residual
-Transmission and Malaria Elimination in Urban African Settings”</p></li>
-<li><p>Exerpts from the <a href="BMGF-Grant.html">BMGF Grant</a>,
-“Modeling for Adaptive Malaria Control”</p></li>
-<li><p><a href="InformationSystems.html">Information Systems for
-Adaptive Malaria Control</a></p></li>
-<li><p><a href="RAMP-Uganda.html">RAMP-Uganda</a>: An introduction to
-adaptive malaria control in Uganda.</p></li>
-</ul>
-</div>
-<div id="dagger" class="section level2">
-<h2><span class="math inline">\(\dagger\)</span></h2>
-<p><strong>Authors</strong></p>
-<ul>
-<li><p>David L. Smith</p></li>
-<li><p>Austin Carter</p></li>
-</ul>
-<p><strong>References</strong></p>
 </div>
 </div>
 
