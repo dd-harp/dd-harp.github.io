@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2023-10-23" />
+<meta name="date" content="2023-10-27" />
 
 <title>exDE</title>
 
@@ -387,7 +387,7 @@ display: none;
 <h3 class="subtitle"><strong>ex</strong>tensible
 <strong>D</strong>ifferential <strong>E</strong>quations for
 mosquito-borne pathogen modeling</h3>
-<h4 class="date">October 23, 2023</h4>
+<h4 class="date">October 27, 2023</h4>
 
 </div>
 
@@ -399,16 +399,17 @@ mosquito-borne pathogen modeling</h3>
 <hr />
 <div id="section" class="section level1 tabset tabset-fade tabset-pills">
 <h1 class="tabset tabset-fade tabset-pills"></h1>
+<p><code>exDE</code> is a software package for building, solving and
+applying mathematical models of mosquito-borne pathogens, including
+malaria epidemiology, transmission dynamics, and control <span class="citation">[<a href="#ref-WuSL2023SpatialDynamics">1</a>]</span>.
+The software was designed around a mathematical framework that is
+modular, structurally flexible, extensible, and highly adaptable to
+support robust analytics for malaria policy <a href="../Adaptive%20Malaria%20Control/RAMP.html">(<strong>RAMP</strong>)</a></p>
+<p>The following is an introduction to using the software, which
+supplements the documentation on <a href="https://dd-harp.github.io/exDE/">github</a>.</p>
+<hr />
 <div id="odot" class="section level2 tabset tabset-fade tabset-pills">
 <h2 class="tabset tabset-fade tabset-pills"><span class="math inline">\(\odot\)</span></h2>
-<hr />
-<p><code>exDE</code> is a software package for developing, solving and
-applying mathematical models of mosquito-borne pathogens, including
-malaria epidemiology, transmission dynamics, and control. The software
-was designed around a mathematical framework that is modular,
-structurally flexible, extensible, and highly adaptable <span class="citation">[<a href="#ref-WuSL2023SpatialDynamics">1</a>]</span>.
-The following is an introduction to the software, which supplements the
-documentation on <a href="https://dd-harp.github.io/exDE/">github</a>.</p>
 <hr />
 <p><code>Intro</code> – What is exDE? How do I start using it?</p>
 <p><code>Forcing</code> – <code>exDE</code> has various ways of
@@ -420,14 +421,10 @@ document information, including references</p>
 </div>
 <div id="intro" class="section level2 tabset tabset-fade tabset-pills">
 <h2 class="tabset tabset-fade tabset-pills">Intro</h2>
-<p><code>exDE</code> is a software package for building, solving and
-applying mathematical models of mosquito-borne pathogens, including
-malaria epidemiology, transmission dynamics, and control <span class="citation">[<a href="#ref-WuSL2023SpatialDynamics">1</a>]</span>.
-The software was designed around a mathematical framework that is
-modular, structurally flexible, extensible, and highly adaptable to
-support robust analytics for malaria policy <a href="../Adaptive%20Malaria%20Control/RAMP.html">(<strong>RAMP</strong>)</a>.
-Design features support nimble model building and the construction of
-ensembles of models with <a href="../Model%20Building/Scalable-Complexity.html">scalable
+<p><code>exDE</code> was designed to support nimble model building and
+analysis. We needed software to support robust analytics for malaria and
+other mosquito-borne pathogens. Robust analytics calls for the
+construction of ensembles of models with <a href="../Model%20Building/Scalable-Complexity.html">scalable
 complexity</a> – we want to start simple and then add realism until some
 of our models are at the appropriate level of abstraction for policy. To
 do robust analytics, the software was designed to propagate uncertainty.
@@ -450,11 +447,14 @@ functions.</p>
 </div>
 <div id="setup" class="section level2 tabset tabset-fade tabset-pills">
 <h2 class="tabset tabset-fade tabset-pills">Setup</h2>
-<p>We assume you have a working knowledge of R and RStudio. It’s
-probably a good idea to use the latest versions, and you will probably
-need to download or update several R packages to get up and running.
-There are many required, but the numerical algorithms rely on these
-two:</p>
+<p><code>exDE</code> was written in <strong>R</strong> and the <em>RAMP
+Model Library</em> was developed in <strong>R Studio</strong> using
+R-Markdown. This document assumes you already have a working knowledge
+of R and RStudio. It’s probably a good idea to use the latest versions,
+and you will probably need to download or update several R packages to
+get up and running.</p>
+<p>There are many required libraries, but the numerical algorithms rely
+heavily on these two:</p>
 <ul>
 <li><p><code>deSolve</code> is the core software to solve differential
 equations.</p></li>
@@ -604,9 +604,11 @@ turned on and set to <code>forced.</code> See <a href="exDE-Forcing.html">Forcin
 <li><p><a href="exDE-Cohorts.html">Cohort Dynamics</a></p></li>
 <li><p><a href="exDE-Forcing.html">Exogenous Forcing</a></p></li>
 <li><p><a href="exDE-VectorControl.html">Vector Control</a></p></li>
+<li><p><a href="exDE-Stratification.html">Principled
+Stratification</a></p></li>
 </ul>
 <hr />
-<p><strong>github</strong></p>
+<p><strong>Software</strong></p>
 <p><a href="https://github.com/dd-harp/exDE" target="_blank">exDE</a> -
 <a href="https://dd-harp.github.io/exDE/" target="_blank">IO</a> | <a href="https://github.com/dd-harp/MicroMoB/" target="_blank">MicroMoB</a>
 - <a href="https://dd-harp.github.io/MicroMoB/" target="_blank">IO</a> |

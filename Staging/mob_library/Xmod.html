@@ -360,15 +360,18 @@ display: none;
 
 
 <hr />
-<p><a href="../RAMP-Model-Library-dev.html"><span class="math inline">\(\uparrow\)</span> RAMP</a> || <a href="mob_library.html">mob_library</a> | <a href="Library.html">Library</a> | <a href="Work.html">Work</a> | <a href="Viz.html">Viz</a></p>
+<p><a href="../HUB.html">HUB</a> – <a href="../Roadmap.html">Roadmap</a>
+– <a href="../RAMP-Model-Library.html">Library</a> – <a href="mob_library.html">mob_library</a> – <a href="../Active.html">active</a></p>
 <hr />
 <pre class="r"><code>purl(&quot;Xmod.Rmd&quot;, output = &quot;Xmod.R&quot;, documentation = 0, quiet=TRUE)</code></pre>
 <div id="section" class="section level1 tabset">
 <h1 class="tabset"></h1>
-<div id="section-1" class="section level2 tabset">
-<h2 class="tabset">-</h2>
+<div id="odot" class="section level2 tabset">
+<h2 class="tabset"><span class="math inline">\(\odot\)</span></h2>
+<p>The list of models available</p>
 <ul>
-<li><p><a href="Xmod-SIS.html">SIS</a></p></li>
+<li><p><a href="Xmod-SIS.html">SIS</a> – the version of <code>SIS</code>
+in <code>exDE</code> is designed for teaching</p></li>
 <li><p><a href="Xmod-SIP.html">SIP</a></p></li>
 <li><p><a href="Xmod-hMoI.html">hMoI</a></p></li>
 <li><p><a href="Xmod-garki.html">Garki</a></p></li>
@@ -380,33 +383,56 @@ display: none;
 <h2 class="tabset">exDE+</h2>
 <div id="core" class="section level3">
 <h3>Core</h3>
-<p>Each new model in <code>exDE</code> requires these functions:</p>
-<p><strong>Interface</strong></p>
+<p>To support the pipeline, each new model in <code>exDE</code> must
+include these functions:</p>
+<p><strong>Interface</strong> – as defined in
+<code>human-interface.R</code></p>
 <ul>
-<li><p><code>dXdt(t, y, pars)</code></p></li>
-<li><p><code>F_X(t, y, pars)</code></p></li>
-<li><p><code>setup_X(pars, Xname, Xopts, ...)</code></p>
+<li><p><code>F_X()</code> – Size of effective infectious human
+population</p></li>
+<li><p><code>F_b()</code> – Infection blocking pre-erythrocytic
+immunity</p></li>
+<li><p><code>dXdt()</code> – Derivatives for human population</p></li>
+<li><p><code>setup_X()</code> – A function to set up Xpar</p></li>
+<li><p><code>make_indices_X()</code> – Add indices for human population
+to parameter list</p></li>
+<li><p><code>parse_deout_X()</code> – Parse the output of deSolve and
+return the variables by name in a list</p></li>
+<li><p><code>get_inits_X()</code> – Return initial values as a
+vector</p></li>
+<li><p><code>update_inits_X()</code> – Set the initial values from a
+vector of states</p></li>
+<li><p><code>HTC()</code> – Compute the human transmitting
+capacity</p></li>
+</ul>
+<hr />
+<p><strong>Setup</strong> – developed for setup in
+<code>human-modelname.R</code></p>
 <ul>
 <li><p><code>make_Xpar_Xname(pars, Xopts, ...)</code></p></li>
 <li><p><code>make_Xinits_Xname(pars, ...)</code></p></li>
-</ul></li>
-<li><p><code>make_Xix(pars)</code></p></li>
-<li><p><code>get_Xinits(pars)</code></p></li>
+</ul>
+<hr />
+<p><strong>Plotting</strong> – developed in
+<code>Xmod-modelname.R</code></p>
+<ul>
+<li><p><code>plot_X()</code></p></li>
+<li><p><code>plot_PR()</code></p></li>
+</ul>
+<hr />
+<p><strong>I/O</strong> – (possibly to be deprecated) developed in
+<code>Xmod-modelname.R</code></p>
+<ul>
 <li><p><code>write_X(pars)</code></p></li>
 <li><p><code>read_X(pars)</code></p></li>
-</ul>
-<p><strong>Output</strong></p>
-<ul>
-<li><p><code>y2pr_strata</code> compute the pr, by strata</p></li>
-<li><p><code>y2pr_pop</code> compute the population average pr</p></li>
 </ul>
 </div>
 <div id="plot" class="section level3">
 <h3>plot</h3>
-<pre class="r"><code>plot_X = function(model, nix){
+<pre class="r"><code>plot_X = function(model, nix, steady){
   UseMethod(&quot;plot_X&quot;, model$Xpar)
 }</code></pre>
-<pre class="r"><code>plot_PR = function(model, nix){
+<pre class="r"><code>plot_PR = function(model, nix, steady){
   UseMethod(&quot;plot_PR&quot;, model$Xpar)
 }</code></pre>
 </div>
