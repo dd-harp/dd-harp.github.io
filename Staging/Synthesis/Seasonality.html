@@ -10,9 +10,9 @@
 
 
 
-<meta name="date" content="2023-11-03" />
+<meta name="date" content="2023-11-01" />
 
-<title>Robust Analytics for Malaria Policy</title>
+<title>Seasonality</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -361,158 +361,17 @@ display: none;
 
 
 
-<h1 class="title toc-ignore"><strong>R</strong>obust
-<strong>A</strong>nalytics for <strong>M</strong>alaria
-<strong>P</strong>olicy</h1>
-<h4 class="date">November 03, 2023</h4>
+<h1 class="title toc-ignore">Seasonality</h1>
+<h4 class="date">November 01, 2023</h4>
 
 </div>
 
 
-<p><code>~/Adaptive Malaria Control/RAMP.Rmd</code></p>
+<p><code>~/Synthesis/Seasonality.Rmd</code></p>
 <hr />
 <p><a href="../HUB.html">HUB</a> – <a href="../Roadmap.html">Roadmap</a>
-– <a href="../RAMP-Model-Library.html">Library</a> –
-<!-- [Glossary](../Glossary.html) -  --> <a href="Adaptive-Malaria-Control.html">Adaptive Malaria Control</a></p>
+– <a href="../RAMP-Model-Library.html">Library</a> – <a href="Synthesis.html">Synthesis</a></p>
 <hr />
-<div id="section" class="section level1 tabset tabset-fade tabset-pills">
-<h1 class="tabset tabset-fade tabset-pills"></h1>
-<div id="odot" class="section level2 tabset tabset-fade tabset-pills">
-<h2 class="tabset tabset-fade tabset-pills"><span class="math inline">\(\odot\)</span></h2>
-<hr />
-<p><strong>RAMP</strong> (=<strong>R</strong>obust
-<strong>A</strong>nalytics for <strong>M</strong>alaria
-<strong>P</strong>olicy) is a framework, bespoke for malaria programs,
-to systematically transform data into information.</p>
-<hr />
-<p><code>Summary</code> – an executive summary</p>
-<p><code>RAMP</code> – What is RAMP?</p>
-<p><span class="math inline">\(\boxplus\)</span> – links to vignettes
-&amp; supporting documents</p>
-<p><a href="#dagger"><span class="math inline">\(\dagger\)</span></a> –
-document information, including references</p>
-</div>
-<div id="ramp" class="section level2 tabset tabset-fade tabset-pills">
-<h2 class="tabset tabset-fade tabset-pills">RAMP</h2>
-<div id="oplus" class="section level3">
-<h3><span class="math inline">\(\oplus\)</span></h3>
-<p><code>Malaria</code> –</p>
-<p><code>Models</code> – We need to use statistical and mechanistic
-models</p>
-</div>
-<div id="malaria" class="section level3">
-<h3>Malaria</h3>
-<p>The long-term goals of most malaria programs are to reduce disease
-and save as many lives as possible now, to eliminate malaria as soon as
-possible, and then to prevent malaria transmission from re-establishing
-until global eradication has been achieved. To achieve these goals,
-malaria programs need information or <a href="../Malaria%20Intelligence/Malaria-Intelligence.html">malaria
-intelligence</a> – data that has been transformed through analysis to
-give it context and meaning.</p>
-<p>The activities and goals of malaria programs – the management of
-malaria within a country, or some other spatial domain – differs from
-the kinds of problems that academics (<em>e.g.</em> statisticians,
-epidemiologists) are trained to solve. While academics are trained to
-narrow the question, malaria programs must manage malaria, whether or
-not they have information. While academics are trained in inferential
-methods that require strong support from well-designed experiments,
-decisions are constantly being made, even when the evidence is weak.
-RAMP has been designed as a bespoke framework for malaria decision
-support.</p>
-<p>The decisions will affect everyone, so there should be a concerted
-effort to get enough information about every place. National ministries
-of health maintain health management information systems (HMIS), so
-malaria programs get routine surveillance data on weekly, monthly, and
-quarterly cycles. While HMIS data are timely, it may not carry the
-information that malaria programs need. Since information is limited,
-the programs will need to <a href="../Malaria%20Intelligence/Borrowing.html">borrow information</a>
-from other sources to create a <a href="../Malaria%20Intelligence/Local-Profile.html">local
-profile</a>.</p>
-<p>Malaria policies are made on</p>
-<p>To develop malaria intelligence, we turn to malaria experts who all
-see the problem differently: doctors, patients, entomologists,
-pharmacologists, epidemiologists, ecologists, economists, sociologists,
-and other experts. The knowledge base that is needed to inform malaria
-policies covers an enormous range of approaches and topics. Malaria
-experts could be interested in: science, medicine, public health, or
-operations; research or analytics; policy, advocacy or academic
-publications; drug or vaccine development; surveillance, monitoring and
-evaluation; dynamics, trial design or statistical analysis; mosquito
-behavior or ecology; insecticide treated nets and mosquitoes or
-associated human behaviors; insecticides or the evolution of insecticide
-resistance; novel vector control strategies; parasite biology; malaria
-epidemiology and immunology; health systems; studies of malaria that
-consider the patient’s perspective; antimalarial drugs or the evolution
-of resistance to antimalarial drugs; pharmaco-kinetics; care seeking and
-treatment; pathogenesis; the burden of disease; the modulation of
-malaria by other diseases; economics and development; human behaviors;
-spatial patterns or spatial dynamics; human, mosquito, or parasite
-genetics; malaria in pregnancy; weather or climate; seasonality and
-transmission; optimization and computation. As daunting as this list
-seems, it is surely incomplete</p>
-<p>Sooner or later, we have to bring all the information together in one
-place to make decisions. To make good malaria policies, all of the data
-describing different parts of the system must be assembled, analyzed,
-and synthesized into a coherent set of advice about what to do,
-including what we should do next acknowledging the limitations of
-current budgets, and what we could do if more resources were
-available.</p>
-</div>
-<div id="models" class="section level3">
-<h3>Models</h3>
-<p>Malaria is a <a href="../Synthesis/Complexity.html">complex</a>, <a href="../Synthesis/Peculiarity.html">locally peculiar</a>, managed,
-stochastic, <a href="../Mosquito/Exogenous-Forcing.html">exogenously
-forced</a>, adaptive system with non-linear dynamics affecting multiple
-interacting agents: humans, mosquitoes, parasites, health systems, and
-vector control managers.</p>
-<p>If we want to work on malaria, we will have to get comfortable with
-all sorts of models as well as their limitations. The challenge is that
-malaria is a <a href="../Synthesis/Complexity.html">complex</a>, <a href="../Synthesis/Peculiarity.html">locally peculiar</a>, managed,
-stochastic, <a href="../Mosquito/Exogenous-Forcing.html">exogenously
-forced</a>, adaptive system with non-linear dynamics affecting multiple
-interacting agents: humans, mosquitoes, parasites, health systems, and
-vector control managers.</p>
-<!-- The issue set for malaria policy evokes a parable found in old Buddhist, Hindu, and Jain texts. As six blind men bumped into the different parts of an elephant, they compared it to familiar objects: the ear resembled a palm leaf; the tail a rope; the elephant’s great belly was like a wall; it’s leg felt like a pillar; the trunk moved like a great snake; and the tusk was hard and sharp, like a spear. Malaria control – our elephant – is defined by a diverse set of processes and objectives.  -->
-<p>The complexity and pecularity of malaria suggest the need for an
-integrated, quantitative approach to malaria control. With so many data
-needs and so many data gaps, we have to learn as we go, adapt to new
-situations, and be smart about prioritizing data gathering to fill the
-most important gaps. Because malaria involves interactions among
-mosquitoes, humans, parasites, and control, it must be considered as a
-system, which requires using mathematics. Because the situation and the
-evidence are changing, our assessments adapt over time.</p>
-<p>Sooner or later, we have to come to grips with the need for
-mathematical models in malaria policy, but if we’re making decisions
-that affect people’s lives, we need to take the uncertainty very
-seriously. Over the past few decades, there has been a very serious
-discussion about how to deal with complex phenomena, which gave rise to
-the notion of <em>robustness.</em> To start with, we must acknowledge an
-unavoidable fact:</p>
-<blockquote>
-<p>All models are wrong, some are useful.</p>
-</blockquote>
-<p>This aphorism is attributed to a British statistician, George P. Box
-(see the <a href="https://en.wikipedia.org/wiki/All_models_are_wrong" target="_blank">Wikipedia page</a>). In a 1997 book, he explained:</p>
-<blockquote>
-<p>All models are approximations. Assumptions, whether implied or
-clearly stated, are never exactly true. All models are wrong, but some
-models are useful. So the question you need to ask is not “Is the model
-true?” (it never is) but “Is the model good enough for this particular
-application?”</p>
-</blockquote>
-<p>The whole idea gives rise to a vision for</p>
-</div>
-</div>
-<div id="boxplus" class="section level2 tabset tabset-fade tabset-pills">
-<h2 class="tabset tabset-fade tabset-pills"><span class="math inline">\(\boxplus\)</span></h2>
-<ul>
-<li><a href="RAMP-Origins.html">The Origins of RAMP</a></li>
-</ul>
-</div>
-<div id="dagger" class="section level2 tabset tabset-fade tabset-pills">
-<h2 class="tabset tabset-fade tabset-pills"><span class="math inline">\(\dagger\)</span></h2>
-</div>
-</div>
 
 
 

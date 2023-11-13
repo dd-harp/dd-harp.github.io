@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2023-10-27" />
+<meta name="date" content="2023-11-02" />
 
 <title>Malaria Models</title>
 
@@ -385,7 +385,7 @@ display: none;
 
 <h1 class="title toc-ignore">Malaria Models</h1>
 <h3 class="subtitle">An Overview</h3>
-<h4 class="date">October 27, 2023</h4>
+<h4 class="date">November 02, 2023</h4>
 
 </div>
 
@@ -423,9 +423,10 @@ models to data. Working with programs, we need a sound introduction to
 the basic <em>metrics</em> that are used to measure malaria.</p>
 <p><strong>2.</strong> <code>Complex Dynamics</code> – This takes deeper
 dive into blood feeding and parasite transmission, mosquito ecology,
-malaria epidemiology (in the narrow sense), and human ecology. In these
-sections, we introduce many of the topics from studies of malaria
-dynamics and control spanning the past 45 years <span class="citation">[<a href="#ref-ReinerRC2013SystematicReview">2</a>,<a href="#ref-SmithDL2014Recasting">3</a>]</span>.</p>
+malaria epidemiology <a href="../Malaria%20Epidemiology/Malaria-Epidemiology.html" target="_blank">(<span class="math inline">\(\hookrightarrow
+\boxdot\)</span>)</a> <a href="../exDE/exDE.html" target="_blank">(<span class="math inline">\(\hookrightarrow \boxdot\)</span>)</a>, and human
+ecology. In these sections, we introduce many of the topics from studies
+of malaria dynamics and control spanning the past 45 years <span class="citation">[<a href="#ref-ReinerRC2013SystematicReview">2</a>,<a href="#ref-SmithDL2014Recasting">3</a>]</span>.</p>
 <p><strong>3.</strong> <code>Spatial Dynamics</code> – This section
 describes how the models can be extended to study parasite dispersal in
 microsimulation models, and in patch-based models for mosquitoes and
@@ -458,7 +459,7 @@ systems of differential equations describing malaria; and
 <code>MicroMoB</code> for solving systems of difference equations
 describing malaria, including stochastic models.</p>
 <p>Malaria modeling started with the Ross-Macdonald model, which was
-developed over a 70 year period after Ross identified parasites in the
+developed in the 70 year period after Ross identified parasites in the
 gut of a mosquito <span class="citation">[<a href="#ref-SmithDL2012_RossMacdonald">1</a>]</span>. The simplicity of
 that model has enormous advantages for teaching basic concepts. At the
 same time, it has limited applicability for malaria programs, because is
@@ -819,8 +820,8 @@ Modeling</h3>
 </div>
 <div id="complexity" class="section level2 tabset tabset-fade tabset-pills">
 <h2 class="tabset tabset-fade tabset-pills">2 Complexity</h2>
-<div id="section-1" class="section level3">
-<h3>-</h3>
+<div id="oplus-2" class="section level3">
+<h3><span class="math inline">\(\oplus\)</span></h3>
 <p>We extend the Ross-Macdonald model to address major limitations of
 the models for blood feeding, mosquito ecology, and malaria
 epidemiology.</p>
@@ -881,12 +882,17 @@ control of malaria.</p>
 <div id="malaria-epidemiology" class="section level3 tabset tabset-fade tabset-pills">
 <h3 class="tabset tabset-fade tabset-pills">2.1 Malaria
 Epidemiology</h3>
-<div id="section-2" class="section level4">
-<h4>-</h4>
+<div id="oplus-3" class="section level4">
+<h4><span class="math inline">\(\oplus\)</span></h4>
+<p>Malaria epidemiology is complex in many ways.</p>
+<ul>
+<li><a href="../Malaria%20Epidemiology/Modeling-Infection.html">13 Ways
+of Looking at Malaria</a></li>
+</ul>
 </div>
 <div id="infection" class="section level4 tabset tabset-fade tabset-pills">
 <h4 class="tabset tabset-fade tabset-pills">2.1.1 Infection</h4>
-<div id="section-3" class="section level5">
+<div id="section-1" class="section level5">
 <h5>-</h5>
 </div>
 <div id="aoi" class="section level5">
@@ -910,7 +916,7 @@ Epidemiology</h3>
 </div>
 <div id="disease" class="section level4 tabset tabset-fade tabset-pills">
 <h4 class="tabset tabset-fade tabset-pills">2.1.2 Disease</h4>
-<div id="section-4" class="section level5">
+<div id="section-2" class="section level5">
 <h5>-</h5>
 </div>
 <div id="fever" class="section level5">
@@ -932,12 +938,12 @@ Epidemiology</h3>
 </div>
 <div id="mosquitoes" class="section level3 tabset tabset-fade tabset-pills">
 <h3 class="tabset tabset-fade tabset-pills">2.2 Mosquitoes</h3>
-<div id="section-5" class="section level4">
+<div id="section-3" class="section level4">
 <h4>-</h4>
 </div>
 <div id="blood-feeding" class="section level4 tabset tabset-fade tabset-pills">
 <h4 class="tabset tabset-fade tabset-pills">2.2.1 Blood Feeding</h4>
-<div id="section-6" class="section level5">
+<div id="section-4" class="section level5">
 <h5>-</h5>
 <p>To ensure mathematical consistency in modeling heterogeneous blood
 feeding and mixing, we need a blood feeding algorithm that has a few key
@@ -978,7 +984,7 @@ heterogeneous exposure.</p></li>
 <div id="heterogeneous-biting" class="section level5 tabset tabset-fade tabset-pills">
 <h5 class="tabset tabset-fade tabset-pills">2.2.2 Heterogeneous
 Biting</h5>
-<div id="section-7" class="section level6">
+<div id="section-5" class="section level6">
 <h6>-</h6>
 <p>Suppose we were in a population where some people got bit by
 mosquitoes more than others. Many reasons why this could happen have
@@ -1171,10 +1177,10 @@ variables: <span class="math inline">\(y=Y/M\)</span>; and <span class="math inl
 </div>
 <div id="aquatic-ecology" class="section level4">
 <h4>2.2.2 Aquatic Ecology</h4>
-<div id="section-8" class="section level5">
+<div id="section-6" class="section level5">
 <h5>-</h5>
 </div>
-<div id="section-9" class="section level5">
+<div id="section-7" class="section level5">
 <h5>-</h5>
 <p><span class="math display">\[
 \begin{array}{rl}
@@ -1203,7 +1209,7 @@ variables: <span class="math inline">\(y=Y/M\)</span>; and <span class="math inl
 </div>
 <div id="human-ecology" class="section level3 tabset tabset-fade tabset-pills">
 <h3 class="tabset tabset-fade tabset-pills">2.4 Human Ecology</h3>
-<div id="section-10" class="section level4">
+<div id="section-8" class="section level4">
 <h4>-</h4>
 </div>
 <div id="travel-mobility" class="section level4">
@@ -1224,7 +1230,7 @@ variables: <span class="math inline">\(y=Y/M\)</span>; and <span class="math inl
 </div>
 <div id="notes-3" class="section level3 tabset tabset-fade tabset-pills">
 <h3 class="tabset tabset-fade tabset-pills">Notes</h3>
-<div id="section-11" class="section level4">
+<div id="section-9" class="section level4">
 <h4>-</h4>
 </div>
 <div id="memory" class="section level4">
@@ -1242,7 +1248,7 @@ variables: <span class="math inline">\(y=Y/M\)</span>; and <span class="math inl
 <h2 class="tabset tabset-fade tabset-pills">3 Space</h2>
 <p>Malaria <strong>spatial dynamics</strong> of
 <strong>connectivity.</strong></p>
-<div id="section-12" class="section level3">
+<div id="section-10" class="section level3">
 <h3>-</h3>
 <p>Models for malaria <strong>spatial dynamics</strong> have been
 formulated in various ways. Here, we discuss <em>patch-based</em>
@@ -1277,7 +1283,7 @@ idea first described by <span class="citation">[<a href="#ref-CarterR2002Spatial
 </div>
 <div id="realism" class="section level2 tabset tabset-fade tabset-pills">
 <h2 class="tabset tabset-fade tabset-pills">4 Realism</h2>
-<div id="section-13" class="section level3">
+<div id="section-11" class="section level3">
 <h3>-</h3>
 <p>We further extend the models to include exogenous forcing by weather,
 human demog</p>
@@ -1287,7 +1293,7 @@ human demog</p>
 </div>
 <div id="mosquitoes-1" class="section level3 tabset tabset-fade tabset-pills">
 <h3 class="tabset tabset-fade tabset-pills">4.2 - Mosquitoes</h3>
-<div id="section-14" class="section level4">
+<div id="section-12" class="section level4">
 <h4>-</h4>
 </div>
 <div id="multiple-vectors" class="section level4">
@@ -1308,7 +1314,7 @@ human demog</p>
 </div>
 <div id="humans" class="section level3 tabset tabset-fade tabset-pills">
 <h3 class="tabset tabset-fade tabset-pills">4.3 - Humans</h3>
-<div id="section-15" class="section level4">
+<div id="section-13" class="section level4">
 <h4>-</h4>
 </div>
 <div id="cohort-dynamics-aging" class="section level4">
@@ -1333,7 +1339,7 @@ human demog</p>
 </div>
 <div id="control" class="section level2 tabset tabset-fade tabset-pills">
 <h2 class="tabset tabset-fade tabset-pills">5 Control</h2>
-<div id="section-16" class="section level3">
+<div id="section-14" class="section level3">
 <h3>.</h3>
 <ul>
 <li><p>Medical</p>
@@ -1349,7 +1355,7 @@ human demog</p>
 </div>
 <div id="vector-control" class="section level3 tabset tabset-fade tabset-pills">
 <h3 class="tabset tabset-fade tabset-pills">5.1 - Vector Control</h3>
-<div id="section-17" class="section level4">
+<div id="section-15" class="section level4">
 <h4>-</h4>
 </div>
 <div id="irs" class="section level4">
@@ -1373,7 +1379,7 @@ human demog</p>
 </div>
 <div id="medical" class="section level3 tabset tabset-fade tabset-pills">
 <h3 class="tabset tabset-fade tabset-pills">5.2 Medical</h3>
-<div id="section-18" class="section level4">
+<div id="section-16" class="section level4">
 <h4>-</h4>
 </div>
 <div id="mda" class="section level4">
@@ -1386,7 +1392,7 @@ human demog</p>
 </div>
 <div id="evolution" class="section level2 tabset tabset-fade tabset-pills">
 <h2 class="tabset tabset-fade tabset-pills">6 Evolution</h2>
-<div id="section-19" class="section level3">
+<div id="section-17" class="section level3">
 <h3>-</h3>
 <p>Evolution of Insecticide Resistance</p>
 <ul>
@@ -1412,7 +1418,7 @@ human demog</p>
 </div>
 <div id="economics" class="section level2 tabset tabset-fade tabset-pills">
 <h2 class="tabset tabset-fade tabset-pills">7 Economics</h2>
-<div id="section-20" class="section level3">
+<div id="section-18" class="section level3">
 <h3>-</h3>
 </div>
 <div id="burden" class="section level3">

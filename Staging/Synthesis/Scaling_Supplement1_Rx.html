@@ -9,11 +9,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="David Smith" />
 
-<meta name="date" content="2022-04-27" />
+<meta name="date" content="2023-11-13" />
 
-<title>Disease</title>
+<title>Robust Estimation of Malaria Exposure and Malaria Transmission Intensity</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -362,19 +361,96 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">Disease</h1>
-<h4 class="author">David Smith</h4>
-<h4 class="date">2022-04-27</h4>
+<h1 class="title toc-ignore">Robust Estimation of Malaria Exposure and
+Malaria Transmission Intensity</h1>
+<h3 class="subtitle">Supplement 1: Treatment</h3>
+<h4 class="date">November 13, 2023</h4>
 
 </div>
 
 
 <hr />
 <p><a href="../HUB.html">HUB</a> – <a href="../Roadmap.html">Roadmap</a>
-– <a href="../RAMP-Model-Library.html">Library</a> – <a href="Malaria-Epidemiology.html">Malaria Epidemiology</a> – <a href="Anemia.html">Anemia</a></p>
+– <a href="../RAMP-Model-Library.html">Library</a> – <a href="../Malaria%20Epidemiology/Malaria-Epidemiology.html">Malaria
+Epidemiology</a> – <a href="Scaling.html">Scaling</a></p>
 <hr />
-<div id="section" class="section level1 tabset tabset-fade tabset-pills">
-<h1 class="tabset tabset-fade tabset-pills"></h1>
+<div id="section" class="section level1 tabset">
+<h1 class="tabset"></h1>
+<div id="odot" class="section level2 tabset">
+<h2 class="tabset"><span class="math inline">\(\odot\)</span></h2>
+</div>
+<div id="sipw" class="section level2">
+<h2>SIPw</h2>
+<p>We want to examine cohort dynamics in a model where treatment can
+occur through one of three modes:</p>
+<ul>
+<li><p><span class="math inline">\(\rho\)</span> is in response to an
+<em>acute-phase</em> infection</p></li>
+<li><p><span class="math inline">\(\xi\)</span> is other treatment in
+infected individuals</p></li>
+<li><p><span class="math inline">\(\zeta\)</span> is
+indiscriminate</p></li>
+</ul>
+<p><span class="math display">\[
+\begin{array}{rl}
+\frac{dX}{da} &amp;= h (1-\rho) (H-P) - (r + \zeta + \xi) X \\  
+\frac{dP}{da} &amp;= (\rho h + \xi)(H-P) + \zeta X - \eta P \\
+\frac{dw}{da} &amp;= h X
+\end{array}
+\]</span></p>
+<p>Note that when <span class="math inline">\(h=0\)</span>, that <span class="math display">\[\bar P = \frac{\xi}{\xi+\eta}\]</span></p>
+<p>the HTC is:</p>
+<p><span class="math display">\[
+b \frac{\eta}{\xi + \eta} \frac{1-\rho}{r+\xi+\zeta}
+\]</span></p>
+</div>
+<div id="now-with-moi-dynamics" class="section level2">
+<h2>Now with MoI dynamics</h2>
+<p>We want to examine cohort dynamics in a model where treatment can
+occur through one of three modes:</p>
+<ul>
+<li><p><span class="math inline">\(\rho\)</span> is in response to an
+<em>acute-phase</em> infection</p></li>
+<li><p><span class="math inline">\(\xi\)</span> is other treatment in
+infected individuals</p></li>
+<li><p><span class="math inline">\(\zeta\)</span> is
+indiscriminate</p></li>
+<li><p><span class="math inline">\(H = \sum_i m_i + P\)</span></p></li>
+<li><p><span class="math inline">\(x = \frac{H - m_0 -
+P}{H}\)</span></p></li>
+</ul>
+<p>We let <span class="math display">\[\Omega(n) = \sum_{i=0,1,..,n-1}
+z_{n-i} m_i\]</span> where <span class="math inline">\(z_i\)</span> is
+the multiplicity of the force of infection, mFoI.</p>
+<p><span class="math display">\[
+\begin{array}{rl}
+\frac{dm_0}{da} &amp;= \eta P - h m_0 + r m_1 - (\zeta + \xi) m_0\\  
+\frac{dm_1}{da} &amp;= h (1-\rho) z_1 m_0 - r m_1 + 2 r m_2 - (\rho h +
+\xi + \zeta) m_1 \\  
+\frac{dm_2}{da} &amp;= h (1-\rho) (z_2 m_0 + z_1 m_1)  - r m_2 + 3 r m_3
+- (\rho h + \xi + \zeta) m_2 \\  
+\frac{dm_3}{da} &amp;= h (1-\rho) \Omega(3) - r m_3 + 4 r m_4 - (\rho h
++ \xi + \zeta) m_3 \\  
+\vdots &amp;= \vdots \\  
+\frac{dP}{da} &amp;= (\rho h + \xi)(H-P) + \zeta X - \eta P \\
+\frac{dw}{da} &amp;= h (1-m_0-P)
+\end{array}
+\]</span></p>
+<p>Note that when <span class="math inline">\(h=0\)</span>, that <span class="math display">\[\bar P = \frac{\xi}{\xi+\eta}\]</span></p>
+<p>the HTC is:</p>
+<p><span class="math display">\[
+b \frac{\eta}{\xi + \eta} \frac{1-\rho}{r+\xi+\zeta}
+\]</span></p>
+</div>
+<div id="demo" class="section level2">
+<h2>demo</h2>
+<pre class="r"><code>F_eir0 = function(t, pars){(1 + sin(2*pi*t/365))^2}</code></pre>
+<pre class="r"><code>xde_setup_cohort(&quot;SIPw&quot;, Xname = &quot;SIPw&quot;, F_eir=F_eir0) -&gt; SIPw 
+xde_steady(SIPw) -&gt; SIPw 
+xde_scaling_eir(SIPw, 25) -&gt; SIPw </code></pre>
+<pre class="r"><code>with(SIPw$eirpr, plot(aeir, pr, type = &quot;l&quot;, log = &quot;x&quot;, xaxt = &quot;n&quot;, xlab =&quot;annual EIR&quot;))
+axis(1, 10^c(-1:3), c(0.1, 1, 10, 100, 1000))</code></pre>
+</div>
 </div>
 
 
