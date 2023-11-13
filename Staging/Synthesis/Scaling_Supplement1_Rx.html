@@ -420,17 +420,19 @@ indiscriminate</p></li>
 P}{H}\)</span></p></li>
 </ul>
 <p>We let <span class="math display">\[\Omega(n) = \sum_{i=0,1,..,n-1}
-z_{n-i} m_i\]</span> where <span class="math inline">\(z_i\)</span> is
-the multiplicity of the force of infection, mFoI.</p>
+z_{n-i} m_i\]</span> where <span class="math inline">\(z_i \geq
+1\)</span> is the (integer) multiplicity of the force of infection
+(mFoI) and <span class="math inline">\(\sum_{i&gt;0} z_i =
+0\)</span>.</p>
 <p><span class="math display">\[
 \begin{array}{rl}
 \frac{dm_0}{da} &amp;= \eta P - h m_0 + r m_1 - (\zeta + \xi) m_0\\  
 \frac{dm_1}{da} &amp;= h (1-\rho) z_1 m_0 - r m_1 + 2 r m_2 - (\rho h +
 \xi + \zeta) m_1 \\  
-\frac{dm_2}{da} &amp;= h (1-\rho) (z_2 m_0 + z_1 m_1)  - r m_2 + 3 r m_3
-- (\rho h + \xi + \zeta) m_2 \\  
-\frac{dm_3}{da} &amp;= h (1-\rho) \Omega(3) - r m_3 + 4 r m_4 - (\rho h
-+ \xi + \zeta) m_3 \\  
+\frac{dm_2}{da} &amp;= h (1-\rho) (z_2 m_0 + z_1 m_1)  - 2 r m_2 + 3 r
+m_3 - (\rho h + \xi + \zeta) m_2 \\  
+\frac{dm_3}{da} &amp;= h (1-\rho) \Omega(3) - 3 r m_3 + 4 r m_4 - (\rho
+h + \xi + \zeta) m_3 \\  
 \vdots &amp;= \vdots \\  
 \frac{dP}{da} &amp;= (\rho h + \xi)(H-P) + \zeta X - \eta P \\
 \frac{dw}{da} &amp;= h (1-m_0-P)
