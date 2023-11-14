@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2023-11-12" />
+<meta name="date" content="2023-11-13" />
 
 <title>Thirteen Ways of Looking at Malaria</title>
 
@@ -397,7 +397,7 @@ display: none;
 
 <h1 class="title toc-ignore">Thirteen Ways of Looking at Malaria</h1>
 <h3 class="subtitle">Modeling Malaria Infection &amp; Immunity</h3>
-<h4 class="date">November 12, 2023</h4>
+<h4 class="date">November 13, 2023</h4>
 
 </div>
 
@@ -418,7 +418,7 @@ that poem heads each section.</p>
 <h2><span class="math inline">\(\odot\)</span></h2>
 <p>This vignette is focused on forging a <em>synthesis</em> of malaria
 models. The related vignette on <a href="Theory.html">theory</a> takes
-more of a historical perspective, including a bibliography.</p>
+more of a historical perspective, including a bibliography. Also, see <a href="../Synthesis/Scaling.html">Scaling</a> (also, the <a href="../Synthesis/Scaling_manuscript.html">ms</a>)</p>
 <p><strong>Contents</strong></p>
 <ul>
 <li><strong>Introduction</strong></li>
@@ -1192,21 +1192,21 @@ phase</p></li>
 treatment rate in response to a primary fever.</p></li>
 <li><p>Let <span class="math inline">\(\zeta_i(w)\)</span> denote the
 treatment rate in response to a secondary fever, by stage.</p></li>
-<li><p>Let <span class="math inline">\(\phi\)</span> denote the
+<li><p>Let <span class="math inline">\(\xi\)</span> denote the
 indiscriminate treatment rate.</p></li>
 </ul>
 <p><span class="math display">\[
 \begin{array}{rl}
-\dot P &amp;= \left(\rho\left(w\right) A + \phi \right) \left(H-P\right)
+\dot P &amp;= \left(\rho\left(w\right) A + \xi \right) \left(H-P\right)
 + \sum \zeta_i(w) X_i - \sigma P \\
-\dot U &amp; = \sigma P - \left(\rho\left(w\right) A + \phi \right) U -
+\dot U &amp; = \sigma P - \left(\rho\left(w\right) A + \xi \right) U -
 h_\delta U + \sum_i r_i X_i  \\
 \dot X_1 &amp; = \Upsilon \; h_\delta \left(H -X_1\right) - \left(r_1 +
-\nu_1 + \zeta_1 (w) + \rho\left(w\right)A + \phi \right)  X_1 \\
+\nu_1 + \zeta_1 (w) + \rho\left(w\right)A + \xi \right)  X_1 \\
 \dot X_i &amp; = \nu_{i-1} X_{i-1} - \left(\Upsilon \; h_\delta + r_i +
-\nu_i + \zeta_i (w) + \rho\left(w\right)A + \phi \right)  X_i \\
+\nu_i + \zeta_i (w) + \rho\left(w\right)A + \xi \right)  X_i \\
 \dot X_n &amp; = \nu_{n-1} X_{n-1} - \left(\Upsilon \; h_\delta + r_n +
-\zeta_n (w) + \rho\left(w\right)A + \phi \right)  X_i \\
+\zeta_n (w) + \rho\left(w\right)A + \xi \right)  X_i \\
 \dot A &amp;= h_\mu(H - P_\mu) - \Upsilon \; h_\delta
 \left(H-P_\delta\right) \\
 \dot w &amp;= h - \xi w
