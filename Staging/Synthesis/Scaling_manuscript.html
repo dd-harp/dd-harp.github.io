@@ -264,6 +264,28 @@ if (window.hljs) {
 
 
 
+<style type="text/css">
+
+div.csl-bib-body { }
+div.csl-entry {
+clear: both;
+}
+.hanging div.csl-entry {
+margin-left:2em;
+text-indent:-2em;
+}
+div.csl-left-margin {
+min-width:2em;
+float:left;
+}
+div.csl-right-inline {
+margin-left:2em;
+padding-left:1em;
+}
+div.csl-indent {
+margin-left: 2em;
+}
+</style>
 
 
 
@@ -385,6 +407,117 @@ Epidemiology</a> – <a href="Scaling.html">Scaling</a></p>
 </div>
 <div id="intro" class="section level2">
 <h2>Intro</h2>
+<p>Malaria is a complex and globally important human disease caused by
+infection with malaria parasites, which are transmitted by anopheline
+mosquitoes. The distribution of malaria risk and the intrinsic
+challenges of disease control are highly heterogeneous across
+geographies <span class="citation">[<a href="#ref-KiszewskiA2004GlobalIndex">1</a>–<a href="#ref-WeissDJ2019MappingGlobal">4</a>]</span>. A major goal of
+malaria surveillance and research is to develop malaria intelligence –
+information that can be used for decision support in malaria policy
+<span class="citation">[<a href="#ref-TalisunaAO2015PresentFuture">5</a>]</span>. Among the most
+basic questions about malaria are the intensity and seasonality of
+malaria transmission, which must be estimated from routine surveillance
+and research data. To serve a core need for malaria programs, we here
+present a set of algorithms, based on synthesis of malaria epidemiology,
+that robustly estimate the intensity of malaria transmission.</p>
+<p>Overall, malaria programs today have several important goals,
+including: to minimize the burden of malaria on a limited budget; to
+design surveillance systems that can gather the information required to
+evaluate and improve malaria control; and to set the stage for malaria
+elimination. Malaria programs are under pressure from donors to stratify
+countries, target areas or sub-populations, and tailor interventions to
+context. The notion of tailoring is based on a working hypothesis that
+information can help countries improve the efficiency of malaria
+control. A closely related hypothesis is that while malaria transmission
+dynamics can be quantified using a common framework, some details about
+local transmission – factors such mosquito blood feeding and resting
+behaviors, spatial heterogeneity in transmission, hydrology, mosquito
+population regulation, and human behaviors – make it peculiar <span class="citation">[<a href="#ref-HackettLW1937MalariaEurope">6</a>]</span>. This peculiarity –
+or local context dependency – presents a critical challenge for malaria
+programs because it could affect the measurement of malaria, the
+outcomes of malaria control, and thus the ability to manage malaria. In
+such systems, tailoring interventions requires having information about
+what makes transmission locally peculiar. How can programs prioritize
+data collection to identify locally relevant details? Given the
+complexity of malaria, data gaps and other limitations of malaria data,
+and the potential for local peculiarity, analytics for malaria control
+should be designed to give advice that is robust to uncertainty: robust
+advice could be tenuous, but it would not change if the analysis had
+been done in a different, but reasonable way. Robust analytics must take
+a systematic approach to quantifying and propagating uncertainty.</p>
+<p>The challenge for robust analytics is thus to accurately characterize
+uncertainties affecting malaria policy. Doing so requires that we create
+a conceptual framework and an associated ecosystem for analytics that
+can address most reasonable concerns about malaria policy. Not only must
+these approaches cover what is known, but they must also go to great
+lengths to grapple with relevant subject matter that remains poorly
+quantified – the known unknowns. The following approach is nested within
+a mathematical framework for malaria epidemiology, transmission
+dynamics, and control instantiated in software the principles of
+robustness <span class="citation">[<a href="#ref-WuSL2023SpatialDynamics">7</a>,<a href="#ref-exDE">8</a>]</span>.</p>
+<p>Malaria transmission has been described by several metrics <span class="citation">[<a href="#ref-HaySI2008MeasuringMalaria">9</a>–<a href="#ref-TustingLS2014MeasuringChanges">11</a>]</span>. The methods
+described herein are focused on the estimation of malaria exposure risk,
+the <em>true</em> local annual entomological inoculation rate (aEIR) and
+its seasonal pattern in a locality. While the local aEIR is a useful
+concept, but while we assume that it is a well-defined quantity, we also
+assume that it is difficult to measure accurately. We also acknowledge
+that the aEIR is not measured frequently enough to be used as a basis
+for managing malaria. There are, however, very good <em>a priori</em>
+reasons to believe that the outcomes of malaria control depend on the
+aEIR. Instead, we will base our methods on metrics that are more readily
+available: the prevalence of malaria (by light microscopy, RDT, or PCR)
+by age in cross-sectional blood surveys, also called the <em>Plasmodium
+falciparum</em> parasite rate (<em>Pf</em>PR); malaria case counts from
+clinics collected through routine surveillance, and the test positivity
+rate (TPR). We anchor our analysis to the <em>Pf</em>PR data that has
+been collected actively, and with a well-defined sampling frame. While
+<em>Pf</em>PR is collected more frequently a<em>Pf</em>EIR data, it is
+not collected frequently enough or extensively enough to manage malaria.
+Our analysis is thus to contextualizing malaria surveillance data, using
+malaria research data, by linking it to predictions about malaria
+transmission that <em>could</em> be verified through enhanced
+<em>entomological surveillance.</em></p>
+<p>The relationship between the <em>Pf</em>PR and the a<em>Pf</em>EIR
+has been explored in several other papers, and there is also
+intermediate information about the <em>Pf</em>FoI <span class="citation">[<a href="#ref-SmithDL2010_InefficientTransmission">12</a>]</span>.
+Mechanisms affecting the relationship between the true local
+a<em>Pf</em>EIR and the true <em>Pf</em>PR include: superinfection and
+immunity; treatment with anti-malarial drugs that cure infections,
+followed by a brief period of chemo-protection; partial or ineffective
+treatment that suppresses parasite densities, followed by recrudescent
+infections; seasonal exposure; heterogeneous exposure including both
+environmental heterogeneity and frailties, hereafter called
+heterogeneous biting, including heterogeneous exposure by age; and
+travel malaria.</p>
+<p>We can never know the true <em>Pf</em>PR or the true local
+a<em>Pf</em>EIR, so we must also consider the observational process. In
+a population, the probability of detection varies by diagnostic method,
+by age and through the transmission season as parasite densities
+fluctuate. The TPR will be affected by all these concerns, but it will
+also be influenced by unobservable factors outside of the control of a
+study, such that the care-seeking population is a biased subset of the
+whole population. Similarly, the a<em>Pf</em>EIR will be affected by the
+method used to catch and count mosquitoes and estimate the human biting
+rate (HBR), as well as the sampling frame.</p>
+</div>
+<div id="results" class="section level2">
+<h2>Results</h2>
+</div>
+<div id="discussion" class="section level2">
+<h2>Discussion</h2>
+<p>Among the most important factors explaining the distribution of
+malaria are the biogeography and ecology of anopheline mosquitoes, the
+socio-economic status of humans, and the development of health systems
+<span class="citation">[<a href="#ref-KiszewskiA2004GlobalIndex">1</a>]</span>.</p>
+</div>
+<div id="boxplus" class="section level2 tabset">
+<h2 class="tabset"><span class="math inline">\(\boxplus\)</span></h2>
+<ul>
+<li><p><a href="Scaling_Supplement1_Rx.html">Supplement 1:
+Treatment</a></p></li>
+<li><p><a href="../Malaria%20Epidemiology/Modeling-Infection.html">13
+ways</a></p></li>
+</ul>
 </div>
 <div id="dagger" class="section level2">
 <h2><span class="math inline">\(\dagger\)</span></h2>
@@ -397,6 +530,78 @@ Epidemiology</a> – <a href="Scaling.html">Scaling</a></p>
 Smith</a></p></li>
 </ul>
 <p><strong>References</strong></p>
+<div id="refs" class="references csl-bib-body">
+<div id="ref-KiszewskiA2004GlobalIndex" class="csl-entry">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">Kiszewski A, Mellinger A, Spielman A, Malaney
+P, Sachs SE, Sachs J. A global index representing the stability of
+malaria transmission. Am J Trop Med Hyg. 2004;70: 486–498. Available: <a href="http://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=pubmed&amp;id=15155980&amp;retmode=ref&amp;cmd=prlinks">http://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=pubmed&amp;id=15155980&amp;retmode=ref&amp;cmd=prlinks</a></div>
+</div>
+<div id="ref-GethingPW2011NewWorld" class="csl-entry">
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">Gething PW, Patil AP, Smith DL, Guerra CA,
+Elyazar IRF, Johnston GL, et al. A new world malaria map:
+<span><em>Plasmodium</em></span><span> <em>Falciparum</em></span>
+endemicity in 2010. Malar J. 2011;10: 378. doi:<a href="https://doi.org/10.1186/1475-2875-10-378">10.1186/1475-2875-10-378</a></div>
+</div>
+<div id="ref-BattleKE2019MappingGlobal" class="csl-entry">
+<div class="csl-left-margin">3. </div><div class="csl-right-inline">Battle KE, Lucas TCD, Nguyen M, Howes RE, Nandi
+AK, Twohig KA, et al. Mapping the global endemicity and clinical burden
+of <span><em>Plasmodium</em></span><span> <em>Vivax</em></span>,
+2000-17: A spatial and temporal modelling study. Lancet. 2019;394:
+332–343. doi:<a href="https://doi.org/10.1016/S0140-6736(19)31096-7">10.1016/S0140-6736(19)31096-7</a></div>
+</div>
+<div id="ref-WeissDJ2019MappingGlobal" class="csl-entry">
+<div class="csl-left-margin">4. </div><div class="csl-right-inline">Weiss DJ, Lucas TCD, Nguyen M, Nandi AK,
+Bisanzio D, Battle KE, et al. Mapping the global prevalence, incidence,
+and mortality of <span><em>Plasmodium</em></span><span>
+<em>Falciparum</em></span>, 2000–17: A spatial and temporal modelling
+study. Lancet. 2019;394: 322–331. doi:<a href="https://doi.org/10.1016/S0140-6736(19)31097-9">10.1016/S0140-6736(19)31097-9</a></div>
+</div>
+<div id="ref-TalisunaAO2015PresentFuture" class="csl-entry">
+<div class="csl-left-margin">5. </div><div class="csl-right-inline">Talisuna AO, Noor AM, Okui AP, Snow RW. The
+past, present and future use of epidemiological intelligence to plan
+malaria vector control and parasite prevention in <span>Uganda</span>.
+Malar J. 2015;14: 158. doi:<a href="https://doi.org/10.1186/s12936-015-0677-4">10.1186/s12936-015-0677-4</a></div>
+</div>
+<div id="ref-HackettLW1937MalariaEurope" class="csl-entry">
+<div class="csl-left-margin">6. </div><div class="csl-right-inline">Hackett LW. Malaria in <span>Europe</span>.
+<span>London, Oxford University Press</span>; 1937. </div>
+</div>
+<div id="ref-WuSL2023SpatialDynamics" class="csl-entry">
+<div class="csl-left-margin">7. </div><div class="csl-right-inline">Wu
+SL, Henry JM, Citron DT, Ssebuliba DM, Nsumba JN, C HMS, et al. Spatial
+dynamics of malaria transmission. PLOS Computational Biology. 2023;19:
+e1010684. doi:<a href="https://doi.org/10.1371/journal.pcbi.1010684">10.1371/journal.pcbi.1010684</a></div>
+</div>
+<div id="ref-exDE" class="csl-entry">
+<div class="csl-left-margin">8. </div><div class="csl-right-inline">Wu
+SL, Smith DL. <span class="nocase">exDE</span>: <span>Extensible
+Differential Equations</span> for <span>Mosquito-Borne Pathogen
+Modeling</span>. 2022. Available: <a href="https://CRAN.R-project.org/package=exDE">https://CRAN.R-project.org/package=exDE</a></div>
+</div>
+<div id="ref-HaySI2008MeasuringMalaria" class="csl-entry">
+<div class="csl-left-margin">9. </div><div class="csl-right-inline">Hay
+SI, Smith DL, Snow RW. Measuring malaria endemicity from intense to
+interrupted transmission. Lancet Infect Dis. 2008;8: 369–378. doi:<a href="https://doi.org/10.1016/S1473-3099(08)70069-0">10.1016/S1473-3099(08)70069-0</a></div>
+</div>
+<div id="ref-SmithDL2009MeasuringMalaria" class="csl-entry">
+<div class="csl-left-margin">10. </div><div class="csl-right-inline">Smith DL, Smith TA, Hay SI. Measuring malaria
+for elimination. In: Feachem RGA, Phillips AA, Targett GAT, editors.
+Shrinking the <span>Malaria Map</span>. <span>San Francisco, CA</span>:
+<span>University of California, San Francisco</span>; 2009. pp. 108–126.
+Available: <a href="http://www.worldcat.org/title/shrinking-the-malaria-map-a-prospectus-on-malaria-elimination/oclc/421361248">http://www.worldcat.org/title/shrinking-the-malaria-map-a-prospectus-on-malaria-elimination/oclc/421361248</a></div>
+</div>
+<div id="ref-TustingLS2014MeasuringChanges" class="csl-entry">
+<div class="csl-left-margin">11. </div><div class="csl-right-inline">Tusting LS, Bousema T, Smith DL, Drakeley C.
+Measuring changes in <span><em>Plasmodium</em></span><span>
+<em>Falciparum</em></span> transmission: Precision, accuracy and costs
+of metrics. Adv Parasitol. 2014;84: 151–208. doi:<a href="https://doi.org/10.1016/B978-0-12-800099-1.00003-X">10.1016/B978-0-12-800099-1.00003-X</a></div>
+</div>
+<div id="ref-SmithDL2010_InefficientTransmission" class="csl-entry">
+<div class="csl-left-margin">12. </div><div class="csl-right-inline">Smith DL, Drakeley CJ, Chiyaka C, Hay SI. A
+quantitative analysis of transmission efficiency versus intensity for
+malaria. Nat Commun. 2010;1: 108. doi:<a href="https://doi.org/10.1038/ncomms1107">10.1038/ncomms1107</a></div>
+</div>
+</div>
 </div>
 </div>
 
