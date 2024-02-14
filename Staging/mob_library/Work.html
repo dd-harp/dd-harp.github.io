@@ -385,59 +385,265 @@ display: none;
 – <a href="../RAMP-Model-Library.html">Library</a> – <a href="mob_library.html">mob_library</a> – <a href="Zoo.html">Zoo</a> –
 <a href="Viz.html">Viz</a> – <a href="Work.html">Work</a> – <a href="../Active.html">active</a></p>
 <hr />
-<pre class="r"><code>purl(&quot;mob_work.Rmd&quot;, output = &quot;mob_work.R&quot;, documentation = 0, quiet=TRUE)</code></pre>
+<pre class="r"><code>purl(&quot;Work.Rmd&quot;, output = &quot;mob_work.R&quot;, documentation = 0, quiet=TRUE)</code></pre>
 <div id="section" class="section level1 tabset tabset-fade tabset-pills">
 <h1 class="tabset tabset-fade tabset-pills"></h1>
 <div id="odot" class="section level2 tabset tabset-fade tabset-pills">
 <h2 class="tabset tabset-fade tabset-pills"><span class="math inline">\(\odot\)</span></h2>
 <p>Adaptive malaria control sets up the expectation that analyses will
-be updated and repeated with some frequency. The functions in
-<code>mob_work</code> are designed to streamline workflows.</p>
+be updated and repeated. The functions in <code>mob_work</code> are
+designed to streamline workflows to guarantee consistency.</p>
 <ul>
-<li><p><del><a href="eir2pr.html">eir2pr</a> and <a href="pr2eir.html">pr2eir</a></del></p></li>
+<li><p><code>Scaling</code> is a set of functions that runs a model to
+its steady state / stable orbits and computes scaling relationships
+around a model <span class="math inline">\(\cal X\)</span>. The annual
+average eir, pr, &amp; ni are returned attached to
+<code>eirpr</code></p>
+<ul>
+<li><p>A function <code>xde_scaling_eir</code> sets up a mesh on the
+EIR, for <code>class(model$xde) = &quot;cohort&quot;</code></p></li>
+<li><p>A set of functions that translate various functions by
+interpolating using <code>eirpr</code></p></li>
+</ul></li>
 <li><p><del><a href="observe_eir.html">observe_eir</a></del></p></li>
 </ul>
 </div>
-<div id="scaling" class="section level2">
-<h2>scaling</h2>
-<pre class="r"><code>xde_scaling_eir = function(pars, N=3){
-  stopifnot(pars$nPatches==1)
-  F_eir_base = pars$F_eir
-  scl_a = with(pars$Hpar, sum(wts_f*H)/sum(H))
-  scl_b = integrate(F_eir_base, 0, 365, pars=pars)$value
-  pars$scl = 1/scl_a/scl_b
-  pars$F_eir = function(t, pars){with(pars,aeir*scl*F_eir_base(t, pars))}
-  #pars$aeir = 1 
-  #scl0 = integrate(pars$F_eir, 0, 365, pars=pars)$value
+<div id="scaling" class="section level2 tabset tabset-fade tabset-pills">
+<h2 class="tabset tabset-fade tabset-pills">Scaling</h2>
+<div id="oplus" class="section level3">
+<h3><span class="math inline">\(\oplus\)</span></h3>
+<ul>
+<li><p><code>xde_scaling_eir</code></p></li>
+<li><p><code>xde_eir2pr</code></p></li>
+<li><p><code>xde_eir2ni</code></p></li>
+<li><p><code>xde_pr2eir</code></p></li>
+<li><p><code>xde_pr2ni</code></p></li>
+</ul>
+</div>
+<div id="xde_scaling_eir" class="section level3">
+<h3><code>xde_scaling_eir</code></h3>
+<p>This was set up to compute scaling relationships, computed as an
+annual average. These functions assume that all the strata live in the
+same patch.</p>
+<ul>
+<li><p>It must be true that <code>nPatches=1</code></p></li>
+<li><p><code>class(model)</code> must be <code>cohort</code></p></li>
+</ul>
+<pre class="r"><code>xde_scaling_eir = function(model, N=25){
+  stopifnot(model$nPatches == 1) 
+  stopifnot(class(model$xde) == &quot;cohort&quot;)
+  
+  # Get the  
+  F_eir_base = model$F_eir
+  scl_a = with(model$Hpar,sum(wts_f*H)/sum(H))
+  scl_b = integrate(F_eir_base, 0, 365, pars=model)$value
+  model$scl = 1/scl_a/scl_b
+  model$F_eir = function(t, model){with(model,aeir*scl*F_eir_base(t, model))}
+  
   eir = 10^seq(-1,3, length.out=N)
   pr = 0*eir
-  scaling = list()  
+  ni = 0*eir
+  scaling = list()
+  
   for(i in 1:N){
-    pars$aeir = eir[i]
-    xde_tmp &lt;- xde_steady(pars)
-    tmp &lt;- xde_tmp$steady
-    tot_pr &lt;- with(tmp, rowSums(pr*H)/rowSums(H))
-    scaling[[i]] = with(tmp, list(aeir=365*c(eir, eir[1]), eir=365*c(eir, eir[1]), pr=tot_pr, pr_i = tmp$pr)) 
-    pr[i] = mean(tot_pr)
-    #print(c(i=i))
-    #if(i == 6) browser() 
+    model$aeir = eir[i]
+    tmp &lt;- xde_stable_orbit(model)$steady
+    
+    mean_pr_t &lt;- with(tmp, rowSums(pr*H)/rowSums(H))
+    mean_ni_t &lt;- with(model$Hpar, with(tmp, rowSums(ni*wts_f*H)/rowSums(wts_f*H)))
+
+    pr[i] = mean(mean_pr_t)
+    ni[i] = mean(mean_ni_t)
+
+    scaling[[i]] = with(tmp, list(aeir=365*eir, eir=eir, 
+                        mean_pr_t=mean_pr_t, mean_ni_t=mean_ni_t, 
+                        pr_t = tmp$pr, ni_t = tmp$ni)) 
   }
-  pars$scaling &lt;- scaling
-  pars$eirpr &lt;- list(aeir=eir, eir=eir/365, pr=pr) 
-  pars$F_eir = F_eir_base
-  return(pars)
+    
+  model$eirpr &lt;- list(aeir=eir, eir=eir/365, pr=pr, ni=ni, scaling=scaling) 
+  model$F_eir = F_eir_base
+    
+  return(model)
 }</code></pre>
+<p>The following functions provide a basic demonstration.</p>
+<pre class="r"><code>F_eir0 &lt;- function(t, pars){0*t + 1}
+mod1 &lt;- xde_setup_cohort(&quot;mod1&quot;, F_eir0)</code></pre>
+<pre class="r"><code>mod1 &lt;- xde_scaling_eir(mod1)</code></pre>
+<pre class="r"><code>with(mod1$eirpr, plot(eir, pr, type = &quot;l&quot;, log=&quot;x&quot;))</code></pre>
 </div>
-<div id="pr2eir" class="section level2">
-<h2>pr2eir</h2>
-<pre class="r"><code>xde_pr2eir = function(pr, pars){
-  PR = pars$eirpr$pr 
-  EIR = pars$eirpr$eir 
-  ix = which(pr&lt;max(PR) &amp; pr&gt;min(PR))
+<div id="xde_scaling_z" class="section level3">
+<h3><code>xde_scaling_Z</code></h3>
+<pre class="r"><code>xde_scaling_Z = function(model, N=25){
+  stopifnot(model$nPatches == 1) 
+  stopifnot(class(model$xde) == &quot;human&quot;)
+
+  # Get the  
+  F_Z_base = model$MYZpar$Zf 
+  scl_a = with(model$Hpar,sum(wts_f*H)/sum(H))
+  beta = with(model$Hpar, compute_beta(H, wts_f, TaR))
+  scl_b = integrate(F_EIR, 0, 365, pars=model, y=y0, beta=beta)$value
+  model$MYZpar$scl = 1/scl_a/scl_b
+  model$MYZpar$Zf = function(t, pars){with(pars$MYZpar,aeir*scl*F_Z_base(t, pars$MYZpar))}
+  
+  eir = 10^seq(-1,3, length.out=N)
+  pr = 0*eir
+  ni = 0*eir
+  scaling = list()
+  
+  for(i in 1:N){
+    model$MYZpar$aeir = eir[i]
+    tmp &lt;- xde_stable_orbit(model)$steady
+
+    mean_pr_t &lt;- with(tmp, rowSums(pr*H)/rowSums(H))
+    mean_ni_t &lt;- with(model$Hpar, with(tmp, rowSums(ni*wts_f*H)/rowSums(wts_f*H)))
+
+    pr[i] = mean(mean_pr_t)
+    ni[i] = mean(mean_ni_t)
+    
+    scaling[[i]] = with(tmp, list(aeir=365*eir, eir=eir, 
+                        mean_pr_t=mean_pr_t, mean_ni_t=mean_ni_t, 
+                        pr_t = tmp$pr, ni_t = tmp$ni)) 
+    
+  }
+    
+  model$eirpr &lt;- list(aeir=eir, eir=eir/365, pr=pr, ni=ni, scaling=scaling) 
+  model$MYZpar$Zf = F_Z_base 
+    
+  return(model)
+}</code></pre>
+<pre class="r"><code>mod2 &lt;- xde_setup_human(&quot;mod2&quot;)
+mod2 &lt;- xde_solve(mod2)</code></pre>
+<pre class="r"><code>mod2 &lt;- xde_scaling_Z(mod2)</code></pre>
+<pre class="r"><code>with(mod2$eirpr, plot(eir, pr, type = &quot;l&quot;, log=&quot;x&quot;))</code></pre>
+</div>
+<div id="xde_scaling_lambda" class="section level3">
+<h3><code>xde_scaling_Lambda</code></h3>
+<p><strong>NOTE</strong> this hasn’t been finished. Working from <span class="math inline">\(\Lambda\)</span></p>
+<pre class="r"><code>xde_scaling_Lambda = function(model, N=25){
+  stopifnot(model$nPatches == 1) 
+  stopifnot(class(model$Lpar) == &quot;trace&quot;)
+
+  # Get the  
+  Lt_base = model$Lpar$Lt
+  tmp = xde_stable_orbit(model)$steady
+  eir_base = tmp$eir
+  if(is.null(dim(eir_base)[2])) {
+    scl = sum(eir_base)
+  }else{
+    scl = rowSums(tmp$fqZ)/rowSums(tmp$H)
+  } 
+
+  model$Lpar$scl = 1/scl
+  model$Lpar$Lt = function(t, pars){with(pars$Lpar,aeir*scl*Lt_base(t, pars))}
+  
+  eir = 10^seq(-1,3, length.out=N)
+  pr = 0*eir
+  ni = 0*eir
+  scaling = list()
+  
+  for(i in 1:N){
+    model$Lpar$aeir = eir[i]
+    tmp &lt;- xde_stable_orbit(model)$steady
+
+    mean_pr_t &lt;- with(tmp, rowSums(pr*H)/rowSums(H))
+    mean_ni_t &lt;- with(model$Hpar, with(tmp, rowSums(ni*wts_f*H)/rowSums(wts_f*H)))
+
+    eir[i] = sum(tmp$eir) 
+    pr[i] = mean(mean_pr_t)
+    ni[i] = mean(mean_ni_t)
+    
+    scaling[[i]] = with(tmp, list(aeir=365*eir, eir=eir, 
+                        mean_pr_t=mean_pr_t, mean_ni_t=mean_ni_t, 
+                        pr_t = tmp$pr, ni_t = tmp$ni)) 
+    
+  }
+    
+  model$eirpr &lt;- list(aeir=eir, eir=eir/365, pr=pr, ni=ni, scaling=scaling) 
+  model$Lpar$Lt &lt;- Lt_base
+    
+  return(model)
+}</code></pre>
+<pre class="r"><code>Lo = list(Lt = function(t, pars){pars$Lpar$Lambda*(1+sin(2*pi*t/365))^3}) 
+mod3 &lt;- xde_setup(&quot;mod3&quot;, Lopts=Lo)
+mod3 &lt;- xde_solve(mod3)</code></pre>
+<pre class="r"><code>mod3 &lt;- xde_scaling_Lambda(mod3)</code></pre>
+<p>…so this works, sort of.</p>
+<pre class="r"><code>with(mod3$eirpr, plot(eir, pr, type = &quot;l&quot;, log=&quot;x&quot;))</code></pre>
+</div>
+<div id="xde_scaling_lambda-1" class="section level3">
+<h3><code>xde_scaling_lambda</code></h3>
+<pre class="r"><code>xde_scaling_lambda = function(model){with(model,{
+  stopifnot(exists(&quot;MYZss&quot;))
+  N = length(eirpr$eir)
+  Z=Y=M=lambda=rep(0,N)
+  for(i in 1:N){
+    Z[i] = with(MYZss, eirpr$eir[i]/f/q) 
+    Y[i] = with(MYZss, exp(g*eip)*Z[i]) 
+    M[i] = with(MYZss, f*q*eirpr$ni[i]/(f*q*eirpr$ni[i] + g)*Y[i])
+    lambda[i] = M[i]/MYZss$g
+  }
+  model$eirpr$m=M
+  model$eirpr$lambda=lambda
+  return(model)
+})}</code></pre>
+<pre class="r"><code>rm &lt;- xde_setup(&quot;rm&quot;)
+rm1 &lt;- xde_scaling(rm)</code></pre>
+</div>
+<div id="myzss" class="section level3">
+<h3><code>MYZss</code></h3>
+<pre class="r"><code>ssMYZ = function(model){with(model$MYZpar,{
+    model$MYZss = list() 
+    Omega = make_Omega(g, sigma, calK, model$nPatches)
+    model$MYZss$Omega = Omega  
+    model$MYZss$OmegaInv = solve(Omega) 
+    model$MYZss$Upsilon = expm(-Omega*eip) 
+    model$MYZss$UpsilonInv = expm(Omega*eip) 
+    beta = with(model$Hpar, compute_beta(H, wts_f, TaR))
+    model$MYZss$beta = beta
+    model$MYZss$betaInv = solve(beta) 
+    model$MYZss$f = f 
+    model$MYZss$q = q 
+    model$MYZss$g = g
+    model$MYZss$eip = eip 
+    return(model)
+})}</code></pre>
+</div>
+<div id="xde_scaling" class="section level3">
+<h3><code>xde_scaling</code></h3>
+<p>We can extend the scaling rules for non-spatial models.</p>
+<pre class="r"><code>xde_scaling = function(model, N=25, F_eir=NULL){
+  if(is.null(F_eir)) F_eir &lt;- function(t, pars){0*t + 1}
+  mod0 = xde_setup_cohort(&quot;mod0&quot;, F_eir)
+  mod0$Xpar &lt;- model$Xpar
+  mod0$Hpar &lt;- model$Hpar
+  model$eirpr = xde_scaling_eir(mod0, N)$eirpr
+  model &lt;- ssMYZ(model)
+  model &lt;- xde_scaling_lambda(model)
+  return(model)
+}</code></pre>
+<pre class="r"><code>aron82 = xde_setup(&quot;aron82&quot;)
+aron82 = xde_solve(aron82)
+aron82 = xde_stable_orbit(aron82)
+plot_PR(aron82)</code></pre>
+</div>
+<div id="xde_pr2eir" class="section level3">
+<h3><code>xde_pr2eir</code></h3>
+<pre class="r"><code>xde_pr2eir = function(pr, model, extend=FALSE){
+  model = with(model, if(exists(&quot;eirpr&quot;)){model}else{xde_scaling(model)})
+  PR = model$eirpr$pr 
+  EIR = model$eirpr$eir
+  if(extend==TRUE){
+    PR = c(0, PR, 1) 
+    EIR = c(0, EIR, 5*10^3/365) 
+  }
+  ix = which(pr&lt;=max(PR) &amp; pr&gt;=min(PR))
   get_eir = function(pr){
+    if(pr == min(PR)) return(min(EIR)) 
+    if(pr == max(PR)) return(max(EIR)) 
     ix = max(which(PR&lt;pr)) 
     ff = (pr-PR[ix])/(PR[ix+1]-PR[ix])
-    EIR[ix] + ff*(EIR[ix+1]-EIR[ix])
+    eir=EIR[ix] + ff*(EIR[ix+1]-EIR[ix])
+    return(eir) 
   }
   eir = 0*pr-1
   eir[ix] = sapply(pr[ix], get_eir)
@@ -445,6 +651,265 @@ be updated and repeated with some frequency. The functions in
   if(length(ix)&gt;0) eirpr$errors = c(pr=pr[-ix])
   return(eirpr) 
 }</code></pre>
+<pre class="r"><code>xde_pr2eir(c(0,0.1,1), mod1, TRUE) -&gt; eir1
+eir1</code></pre>
+<pre class="r"><code>xde_pr2eir(c(0,0.1,1), mod2, TRUE) -&gt; eir2
+eir2</code></pre>
+</div>
+<div id="xde_eir2pr" class="section level3">
+<h3><code>xde_eir2pr</code></h3>
+<pre class="r"><code>xde_eir2pr = function(eir, model, extend=FALSE){
+  model = with(model, if(exists(&quot;eirpr&quot;)){model}else{xde_scaling(model)})
+  PR = model$eirpr$pr 
+  EIR = model$eirpr$eir
+  if(extend==TRUE){
+    PR = c(0, PR, 1) 
+    EIR = c(0, EIR, 5*10^3/365) 
+  }
+  ix = which(eir&lt;=max(EIR) &amp; eir&gt;=min(EIR))
+  get_pr = function(eir){
+    if(eir == min(EIR)) return(min(PR)) 
+    if(eir == max(EIR)) return(max(PR)) 
+    ix = max(which(EIR&lt;eir)) 
+    ff = (eir-EIR[ix])/(EIR[ix+1]-EIR[ix])
+    pr=PR[ix] + ff*(PR[ix+1]-PR[ix])
+    return(pr) 
+  }
+  pr = 0*eir-1
+  pr[ix] = sapply(eir[ix], get_pr)
+  preir = list(eir=eir[ix], pr=pr[ix]) 
+  if(length(ix)&gt;0) preir$errors = c(pr=pr[-ix])
+  return(preir) 
+}</code></pre>
+<pre class="r"><code>xde_eir2pr(c(1, 10)/365, mod1, TRUE) -&gt; pr1
+pr1</code></pre>
+<pre class="r"><code>xde_eir2pr(c(1, 10)/365, mod2, TRUE) -&gt; pr2
+pr2</code></pre>
+</div>
+<div id="xde_eir2ni" class="section level3">
+<h3><code>xde_eir2ni</code></h3>
+<p>This does the conversion from the EIR to the NI at the steady
+state.</p>
+<pre class="r"><code>xde_eir2ni = function(eir, model, extend=FALSE){
+  model = with(model, if(exists(&quot;eirpr&quot;)){model}else{xde_scaling(model)})
+  NI = model$eirpr$ni 
+  EIR = model$eirpr$eir
+  if(extend==TRUE){
+    NI = c(0, NI, 1) 
+    EIR = c(0, EIR, 5*10^3/365) 
+  }
+  ix = which(eir&lt;=max(EIR) &amp; eir&gt;=min(EIR))
+  get_ni = function(eir){
+    if(eir == min(EIR)) return(min(NI)) 
+    if(eir == max(EIR)) return(max(NI)) 
+    ix = max(which(EIR&lt;eir)) 
+    ff = (eir-EIR[ix])/(EIR[ix+1]-EIR[ix])
+    ni=NI[ix] + ff*(NI[ix+1]-NI[ix])
+    return(ni) 
+  }
+  ni = 0*eir-1
+  ni[ix] = sapply(eir[ix], get_ni)
+  nieir = list(eir=eir[ix], ni=ni[ix]) 
+  if(length(ix)&gt;0) nieir$errors = c(ni=ni[-ix])
+  return(nieir) 
+}</code></pre>
+<pre class="r"><code>xde_eir2ni(c(1, 10)/365, mod1, TRUE) -&gt; ni1
+ni1</code></pre>
+<pre class="r"><code>xde_eir2ni(c(1, 10)/365, mod2, TRUE) -&gt; ni2
+ni2</code></pre>
+</div>
+<div id="xde_pr2ni" class="section level3">
+<h3><code>xde_pr2ni</code></h3>
+<pre class="r"><code>xde_pr2ni = function(pr, model, extend=FALSE){
+  model = with(model, if(exists(&quot;eirpr&quot;)){model}else{xde_scaling(model)})
+  PR = model$eirpr$pr 
+  NI = model$eirpr$ni
+  if(extend==TRUE){
+    PR = c(0, PR, 1) 
+    NI = c(0, NI, max(NI)) 
+  }
+  ix = which(pr&lt;=max(PR) &amp; pr&gt;=min(PR))
+  get_ni = function(pr){
+    if(pr == min(PR)) return(min(NI)) 
+    if(pr == max(PR)) return(max(NI)) 
+    ix = max(which(PR&lt;pr)) 
+    ff = (pr-PR[ix])/(PR[ix+1]-PR[ix])
+    ni=NI[ix] + ff*(NI[ix+1]-NI[ix])
+    return(ni) 
+  }
+  ni = 0*pr-1
+  ni[ix] = sapply(pr[ix], get_ni)
+  nipr = list(pr=pr[ix], ni=ni[ix]) 
+  if(length(ix)&gt;0) nipr$errors = c(pr=pr[-ix])
+  return(nipr) 
+}</code></pre>
+<pre class="r"><code>xde_pr2ni(seq(0, 1, by = 0.1), mod1, TRUE) -&gt; ni1
+ni1</code></pre>
+<pre class="r"><code>xde_pr2ni(seq(0, 1, by = 0.1), mod2, TRUE) -&gt; ni2
+ni2</code></pre>
+</div>
+</div>
+<div id="lambda" class="section level2 tabset tabset-fade tabset-pills">
+<h2 class="tabset tabset-fade tabset-pills">Lambda</h2>
+<div id="oplus-1" class="section level3">
+<h3><span class="math inline">\(\oplus\)</span></h3>
+<p>While <code>Scaling</code> sets up some functions that compute the
+average annual values of the eir, the pr, and infectiousnessfor any
+model <span class="math inline">\(\cal X\)</span>, the next step is to
+compute the emergence rate of adult mosquitoes – <span class="math inline">\(\Lambda\)</span> or <code>Lambda</code> in a set
+of patches.</p>
+</div>
+<div id="lambda2pr" class="section level3">
+<h3><code>Lambda2pr</code></h3>
+<p>Does EIR1 need to go into a loop?</p>
+<pre class="r"><code>Lambda2pr = function(Lambda, model){
+  with(model, stopifnot(exists(&quot;MYZss&quot;)))
+  with(model$MYZss,{
+    M = OmegaInv %*% Lambda 
+    
+    # lower 
+    kappa0 = min(model$eirpr$ni)
+    Y = solve(diag(f*q*kappa0, model$nPatches) + Omega)%*%(f*q*kappa0*M) 
+    Z = OmegaInv %*% (Upsilon %*% (Omega %*% Y))
+    EIR0 = beta %*% (f*q*Z)
+    pr0 = xde_eir2pr(EIR0, model, TRUE)$pr
+    
+    # upper 
+    kappa1 = max(model$eirpr$ni)
+    Y = solve(diag(f*q*kappa1, model$nPatches) + Omega)%*%(f*q*kappa1*M) 
+    Z = OmegaInv %*% (Upsilon %*% (Omega %*% Y))
+    EIR1 = beta %*% (f*q*Z)
+#    pr1 = xde_eir2pr(EIR1, model, TRUE)$pr
+    
+    # middle 
+    kappa = mean(xde_pr2ni(c(EIR0, EIR1), model, TRUE)$ni)
+    #kappa = mean(xde_pr2ni(c(pr0, pr1), model, TRUE)$ni)
+    Y = solve(diag(f*q*kappa, model$nPatches) + Omega)%*%(f*q*kappa*M) 
+    Z = OmegaInv %*% (Upsilon %*% (Omega %*% Y))
+    EIR = beta %*% (f*q*Z)
+    pr = xde_eir2pr(EIR, model, TRUE)$pr
+    #print(c(pr=pr))
+    
+    # gradient 
+    kappaG = xde_eir2ni(EIR, model, TRUE)$ni
+    Y = solve(diag(f*q*kappaG, model$nPatches) + Omega)%*%(f*q*kappaG*M) 
+    Z = OmegaInv %*% (Upsilon %*% (Omega %*% Y))
+    EIRG = beta %*% (f*q*Z)
+    
+    if(EIRG&gt;EIR){EIR0&lt;-EIR}else{EIR1&lt;-EIR}
+    #if(EIRG&gt;EIR){pr0&lt;-pr}else{pr1&lt;-pr}
+    prA=pr0 
+    i=0
+    while(sum((prA-pr)^2)&gt;1e-9){
+      prA=pr 
+      #i=i+1 
+      # middle 
+      kappa = mean(xde_eir2ni(c(EIR0, EIR1), model, TRUE)$ni)
+      #kappa = mean(xde_pr2ni(c(pr0, pr1), model, TRUE)$ni)
+      Y = solve(diag(f*q*kappa, model$nPatches) + Omega)%*%(f*q*kappa*M) 
+      Z = OmegaInv %*% (Upsilon %*% (Omega %*% Y))
+      EIR = beta %*% (f*q*Z)
+      pr = xde_eir2pr(EIR, model, TRUE)$pr
+      #print(c(pr=pr)) 
+      
+      # gradient 
+      kappaG = xde_eir2ni(EIR, model, TRUE)$ni
+      Y = solve(diag(f*q*kappaG, model$nPatches) + Omega)%*%(f*q*kappaG*M) 
+      Z = OmegaInv %*% (Upsilon %*% (Omega %*% Y))
+      EIRG = beta %*% (f*q*Z)
+      
+      if(EIRG&gt;EIR){EIR0&lt;-EIR}else{EIR1&lt;-EIR}
+      #if(EIRG&gt;EIR){pr0&lt;-pr}else{pr1&lt;-pr}
+    }
+    #print(c(i=i))
+    return(xde_eir2pr(EIRG, model, TRUE)$pr)
+  })
+}</code></pre>
+<pre class="r"><code>aron82 &lt;- ssMYZ(aron82)
+PR0 = 0.1</code></pre>
+<pre class="r"><code>pr2Lambda(PR0, aron82)-&gt; Lambda
+Lambda</code></pre>
+<pre class="r"><code>Lambda2pr(Lambda, aron82) -&gt; PR1
+abs(PR0-PR1)</code></pre>
+</div>
+<div id="pr2lambda" class="section level3">
+<h3><code>pr2Lambda</code></h3>
+<p>This does <span class="math inline">\(x \rightarrow \Lambda\)</span>
+conversions using the algebra.</p>
+<ul>
+<li><p>There is no guarantee the values returned by
+<code>pr2Lambda</code> would be positive.</p></li>
+<li><p>By default, we set <code>constrain=TRUE</code> and set all
+negative values of <span class="math inline">\(\Lambda\)</span> to
+0.</p></li>
+</ul>
+<pre class="r"><code>pr2Lambda = function(pr, model, constrain=TRUE){
+  with(model, stopifnot(exists(&quot;MYZss&quot;)))
+  with(model$MYZss,{
+    eir = xde_pr2eir(pr, model, TRUE)$eir
+    kappa = xde_pr2ni(pr, model, TRUE)$ni
+    Z = (betaInv %*% eir)/f/q
+    Y = OmegaInv %*% (UpsilonInv %*% (Omega %*% Z))
+    M = diag(1/f/q/kappa, model$nPatches)%*%(diag(f*q*kappa, model$nPatches) + Omega) %*% Y
+    Lambda = Omega %*% M
+    if(constrain == TRUE) Lambda = pmax(Lambda,0)
+    return(Lambda)
+  })
+}</code></pre>
+</div>
+</div>
+<div id="calibrate" class="section level2 tabset tabset-fade tabset-pills">
+<h2 class="tabset tabset-fade tabset-pills">Calibrate</h2>
+<div id="oplus-2" class="section level3">
+<h3><span class="math inline">\(\oplus\)</span></h3>
+</div>
+<div id="xde_fitlambda2pr_lss" class="section level3">
+<h3><code>xde_fitLambda2pr_lss</code></h3>
+<p><strong>Needs to be validated</strong></p>
+<pre class="r"><code>xde_fitLambda2pr_lss = function(pr, model){
+  model = with(model, if(exists(&quot;MYZss&quot;)){model}else{MYZss(model)})
+  FFit = function(X, pr, model){
+    ppr = Lambda2pr(X^2, model)
+    sum((ppr-pr)^2) 
+  }
+  X = pr2Lambda(PR, model)
+  optim(sqrt(X), fitit, pr=pr, mod=mod)$par -&gt; X 
+  model$Lpar$Lambda = sqrt(X)
+  return(model)
+}</code></pre>
+</div>
+<div id="xde_calibrate" class="section level3">
+<h3><code>xde_calibrate</code></h3>
+<pre class="r"><code>aron82 &lt;- xde_setup(&quot;aron82&quot;)
+aron82$Lpar$Lt &lt;- function(t, pars){pars$Lpar$Lambda**0*t+1}</code></pre>
+<pre class="r"><code>aron82 &lt;- xde_solve(aron82, 2*365)
+aron82 &lt;- xde_stable_orbit(aron82)</code></pre>
+<pre class="r"><code>pr2Lambda(0.1, aron82) -&gt; Lambda
+Lambda</code></pre>
+<pre class="r"><code>Lambda2pr(Lambda, aron82)</code></pre>
+<pre class="r"><code>aron82$Lpar$Lambda = Lambda
+aron82 &lt;- xde_solve(aron82, 730)
+tail(aron82$orbits$pr, 1)</code></pre>
+</div>
+</div>
+<div id="xde_steady" class="section level2">
+<h2><code>xde_steady</code></h2>
+<pre class="r"><code>#&#39; @title Solve for the steady state a static system of equations
+#&#39; @description This method dispatches on the type of `pars$xde`.
+#&#39; @param pars a [list] that defines a model
+#&#39; @param Ymax the number of years to burn-in
+#&#39; @return a [list]
+#&#39; @export
+xde_steady = function(pars){
+  pars = make_indices(pars)
+  y0 = get_inits(pars)
+  rootSolve::steady(y=y0, func = xDE_diffeqn, parms = pars, method=&quot;runsteady&quot;)$y -&gt; pars$y_eq
+  return(pars)
+}</code></pre>
+<pre class="r"><code>rm = xde_setup(&quot;rm&quot;, MYZname = &quot;RMstatic&quot;)</code></pre>
+<pre class="r"><code>rm = xde_stable_orbit(rm)</code></pre>
+<pre class="r"><code>xde_steady(rm)$steady -&gt; steady
+signif(steady+1,6) -1</code></pre>
 </div>
 </div>
 

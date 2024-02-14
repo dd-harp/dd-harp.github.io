@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2023-11-07" />
+<meta name="date" content="2024-01-03" />
 
 <title>The Model Builders</title>
 
@@ -385,7 +385,7 @@ display: none;
 
 <h1 class="title toc-ignore">The Model Builders</h1>
 <h3 class="subtitle">Who build malaria models, and why?</h3>
-<h4 class="date">November 07, 2023</h4>
+<h4 class="date">January 03, 2024</h4>
 
 </div>
 
@@ -461,6 +461,75 @@ decisions.</p></li>
 </div>
 <div id="narrative" class="section level2">
 <h2>Narrative</h2>
+<p>Models are a basic part of doing inference for research and
+analytics. In this essay, we will discuss models and their function in
+science by asking <em>who</em> builds models, <em>what</em> kinds of
+research they are doing, <em>why</em> they build them, <em>how</em> the
+models and analysis get used. In doing so, we hope to provoke some
+thought about how model building can facilitate understanding and inform
+decisions, but also they can distort and obscure. Science and analytics
+are, after all, basically human activities, and research and analytics
+can just as easily mislead.</p>
+<p>A model, for our purposes, is an abstract, quantitative
+representation of something in the natural world. In many cases, the
+models are built in the service of understanding causation. In other
+cases, the models are built to support a decision. We will use the term
+<em>statistical</em> if it was used (or could be used) to understand or
+interpret patterns in data. We will use the term <em>mechanistic
+model</em> if it was developed to represent or understand a process.
+Notably, these two terms – <em>mechanistic</em> and <em>statistical</em>
+– are not exclusive: many models are both mechanistic and statistical.
+<em>Non-mechanistic statistical models,</em> such as lines, splines, and
+other smoothing algorithms, are the starting point for most
+retrospective analysis of data, where a goal is to identify patterns in
+data. One advantage of a mechanistic model is that it provides a
+sensible basis for extrapolation, while the non-mechanistic models does
+not. Mechanistic models can also draw our attention to metrics that are
+relevant, even if the patterns are very dull. For example, the
+prevalence of malaria is a useful descriptive statistic, even if it
+doesn’t change very much.</p>
+<p>In building a model, we accept that there is some kind of underlying
+<em>cause,</em> which for our purposes is a statement of belief that
+something is <em>true</em> about the way the world works. Well formed
+statements of causation are probabilistic in nature, but to be useful,
+we present them in a simplified shorthand. While this is a laudible
+long-term goal, everything we know about the world is filtered through a
+<em>observational process.</em> Ideally, the models would be used to
+understand causation through an examination of patterns in data, but
+anyone who has thought about it seriously will warn you to be cautious
+about making up your mind about something. Patterns are often found for
+strange reasons, and correlation need not imply causation.</p>
+<p>The presentation of a model often begins with a set of observations.
+The generic background material required to learn about models includes
+algebra (including linear algebra), calculus, and some basic probability
+theory. All of it relies on basic logic. The specific background
+material required to understand a model is usually domain specific.</p>
+<p>Mechanistic models are often formulated to understand a process that
+is evolving over time, so one useful class of models would be systems of
+differential or difference equations. The first model is usually
+mathematically simple:</p>
+<ul>
+<li><p><span class="math inline">\(D=rt\)</span>; the distance traveled
+(<span class="math inline">\(D\)</span>) is the product of the rate of
+travel (<span class="math inline">\(r\)</span>), and the time spent
+traveling (<span class="math inline">\(t\)</span>), which we can get
+from <span class="math inline">\(dD/dt = r.\)</span></p></li>
+<li><p><span class="math inline">\(dN/dt = rN\)</span> so <span class="math inline">\(N = e^{rt}\)</span>; the number of bacteria in a
+population (<span class="math inline">\(N\)</span>) is growing as cells
+divide at a constant rate (<span class="math inline">\(r\)</span>) so
+the population will tend to grow exponentially.</p></li>
+<li><p><span class="math inline">\(X(n+1) = R_0 X(n)\)</span> so <span class="math inline">\(X(n)= R_0^t X(0)\)</span>; the number of people
+who would be infected by a pathogen in the pathogen’s <span class="math inline">\(n^{th}\)</span> generation increases geometrically
+with the number of people infected by each person.</p></li>
+</ul>
+<p>In the classroom, we might see them at first written on a chalkboard.
+The homework could be done with a pencil and paper, with a spreadsheet,
+or with some</p>
+<p>It takes an awful lot of mathematical background to deal with these
+basic models, and</p>
+</div>
+<div id="malaria" class="section level2">
+<h2>Malaria</h2>
 <p>After he found malaria parasites in the gut of a mosquito, Ronald
 Ross’s interests turned to <em>The Prevention of Malaria</em> <span class="citation">[<a href="#ref-RossR1911Book">6</a>]</span>. In the
 1900s, Ross developed several mathematical models with the goal of
@@ -508,8 +577,8 @@ describing some basic features of larval source management <span class="citation
 dynamics as a system of difference equations <span class="citation">[<a href="#ref-RossR1908">8</a>]</span>. In 1911, he published the same
 models as differential equations <span class="citation">[<a href="#ref-RossR1911Book">6</a>,<a href="#ref-RossR1911Nature">9</a>]</span>.</p>
 </div>
-<div id="refs" class="section level2 unnumbered">
-<h2 class="unnumbered">Refs</h2>
+<div id="dagger" class="section level2 unnumbered">
+<h2 class="unnumbered"><span class="math inline">\(\dagger\)</span></h2>
 <div id="refs" class="references csl-bib-body">
 <div id="ref-MacdonaldG1950Superinfection" class="csl-entry">
 <div class="csl-left-margin">1. </div><div class="csl-right-inline">Macdonald G. The analysis of infection rates in

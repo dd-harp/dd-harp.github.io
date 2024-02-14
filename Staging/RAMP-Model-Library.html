@@ -10,9 +10,9 @@
 
 
 
-<meta name="date" content="2023-10-13" />
+<meta name="date" content="2024-02-13" />
 
-<title>Robust Analytics for Malaria Policy</title>
+<title>The RAMP Model Library</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -383,11 +383,10 @@ display: none;
 
 
 
-<h1 class="title toc-ignore"><strong>R</strong>obust
-<strong>A</strong>nalytics for <strong>M</strong>alaria
-<strong>P</strong>olicy</h1>
-<h3 class="subtitle">The Model Library</h3>
-<h4 class="date">October 13, 2023</h4>
+<h1 class="title toc-ignore">The RAMP Model Library</h1>
+<h3 class="subtitle"><strong>R</strong>obust <strong>A</strong>nalytics
+for <strong>M</strong>alaria <strong>P</strong>olicy</h3>
+<h4 class="date">February 13, 2024</h4>
 
 </div>
 
@@ -395,28 +394,44 @@ display: none;
 <!-- “default”, “bootstrap”, “cerulean”, “cosmo”, “darkly”, “flatly”, “journal”, “lumen”, “paper”, “readable”, “sandstone”, “simplex”, “spacelab”, “united”, “yeti” -->
 <p><code>~/RAMP-Model-Library.Rmd</code></p>
 <hr />
-<p><a href="HUB.html">HUB</a> – <a href="Roadmap.html">Roadmap</a> – <a href="Contributors/Contributors.html">Contributors</a> – <a href="Active.html">Active</a> – <a href="RAMP-Model-Library-dev.html"><code>dev</code></a></p>
+<p><span class="math inline">\(\otimes\)</span> | <a href="HUB.html">hub</a> | <a href="Roadmap.html">map</a> | <a href="Contributors/Contributors.html">contrib</a> | <a href="Active.html">active</a> | <a href="RAMP-Model-Library-dev.html"><code>dev</code></a></p>
 <hr />
 <div id="section" class="section level1 tabset tabset-fade tabset-pills">
 <h1 class="tabset tabset-fade tabset-pills"></h1>
 <div id="odot" class="section level2">
 <h2><span class="math inline">\(\odot\)</span></h2>
-<p><strong>RAMP</strong> (<span class="math inline">\(=\)</span>
-<strong>R</strong>obust <strong>A</strong>nalytics for
-<strong>M</strong>alaria <strong>P</strong>olicy) was developed to be an
-inferential framework and ecosystem for computation and analysis to
-support <a href="Adaptive%20Malaria%20Control/Adaptive-Malaria-Control.html">Adaptive
-Malaria Control</a>.</p>
+<p><a href="./Adaptive%20Malaria%20Control/RAMP.html"><strong>RAMP</strong></a>
+(<span class="math inline">\(=\)</span> <strong>R</strong>obust
+<strong>A</strong>nalytics for <strong>M</strong>alaria
+<strong>P</strong>olicy) is an an inferential framework that supports
+adaptive <a href="Adaptive%20Malaria%20Control/Adaptive-Malaria-Control.html">Adaptive
+Malaria Control</a>. This private github repository supports research
+and development the RAMP software ecosystem, including R software
+packages and computational algorithms to implement RAMP workflows for
+information systems and analytics.</p>
 <p>The <strong>RAMP Model Library</strong> was initially created as a
 private github repository to help organize and assemble a large set of
-algorithms into an interoperable framework. It has now become the
-primary repository for knowledge and experience we’ve accumulated as we
-put these methods into practice: concepts and ideas about robust
-analytics; bibliographies; software prototypes; models and algorithms
-describing various aspects of malaria epidemiology, transmission
-dynamics and control; and lectures and examples.</p>
-<p>Over time, as the material matures, some of it will migrate to our
-public github repository called <a href="https://dd-harp.github.io/"><strong>HARP</strong></a> (<span class="math inline">\(=\)</span> <strong>H</strong>ealth
+algorithms into an inter-operable framework for simulation-based
+analytics. An important milestone for RAMP was the publication of R
+software packages on github: <a href="exdE/exDE.html">exDE</a>, <a href="MicroMoB/MicroMoB.html">MicroMoB</a>, <a href="mobwork/mobwork.html">mobwork</a>, <a href="Memory/Memory.html">pf.memory</a>, and <a href="Micro/Micro.html">motrap.micro</a>. After the design phase ended,
+the code base stabilized, the R packages were published, and the
+research and development goals for RAMP evolved. The next major
+milestone is to use RAMP. To do so, we must implement a RAMP analytics
+pipeline for ongoing <a href="Projects/Projects.html">Projects</a>.</p>
+<p>The primary mission of this repository is to support ongoing
+development of algorithms, but it is also to develop training materials,
+and to support peer reviewed publications. It is a private space for
+staging ground for new models, new algorithms, and new
+<em>vignettes.</em> The documents in the library and the links serve as
+a map to the concepts, and the documents hold the knowledge and
+experience we’ve accumulated as we put these methods into practice. The
+library includes concepts and ideas about robust analytics;
+bibliographies; software prototypes; models and algorithms describing
+various aspects of malaria epidemiology, transmission dynamics and
+control; and lectures and examples.</p>
+<p>Over time, as the material matures, some of it will get published as
+peer reviewed journal articles or vignettes. Other material will migrate
+to the public github repository called <a href="https://dd-harp.github.io/"><strong>HARP</strong></a> (<span class="math inline">\(=\)</span> <strong>H</strong>ealth
 <strong>A</strong>nalytics for <strong>R</strong>obust
 <strong>P</strong>olicy).</p>
 <hr />
@@ -424,6 +439,8 @@ public github repository called <a href="https://dd-harp.github.io/"><strong>HAR
 <ul>
 <li><p><code>Welcome</code> – A short discussion of the RAMP Model
 Library and its origins.</p></li>
+<li><p><code>Software</code> – The R software packages that support RAMP
+and Adaptive Malaria Control</p></li>
 <li><p><code>Library</code> – An introduction to the structure and
 organization of the RAMP Model Library</p></li>
 <li><p><span class="math inline">\(\boxplus\)</span> – links to
@@ -440,24 +457,23 @@ Malaria Control</strong></a>, which borrows concepts and ideas from both
 <em>adaptive management</em> and <em>integrated vector management.</em>
 Adaptive malaria control is a structured way of using evidence to make
 policy in iterative cycles of analysis and consultation.</p>
-<p>As I thought about the kind of inference that was needed to support
-managers with effective decision making in systems with repeated
-analyses, I was guided by the general notion of <em>robustness.</em> A
-decision is not like a peer-reviewed publication, but it needs to be as
-rigorous as possible. I thus sought an inferential framework for malaria
-that clearly differentiated analytics (<em>i.e.</em> for effective
+<p>One question that came up repeatedly was about the kind of
+inferential frameworks that would be needed to support managers with
+effective decision making in systems with repeated analyses, I was
+guided by the general notion of <em>robustness.</em> A decision is not
+like a peer-reviewed publication. There’s usually more at stake, so the
+advice needs to be as rigorous as possible.</p>
+<p>We are thus developing inferential frameworks for malaria that
+clearly differentiated analytics (<em>i.e.</em> for effective
 decision-making) from scientific research. Over time, I became intrigued
 with an idea that I called <a href="Analytics/Robust-Analytics.html"><em>robust analytics</em></a>:
 hence <strong>R</strong>obust <strong>A</strong>nalytics for
 <strong>M</strong>alaria <strong>P</strong>olicy
-(=<strong>RAMP</strong>). At some point, I set up a private github
-repository called <code>RAMP-Model-Library</code> to organize a large
-set of algorithms describing various aspects of malaria epidemiology,
-transmission dynamics and control.</p>
-<p>It has evolved a lot since then.</p>
+(=<strong>RAMP</strong>).</p>
 <p>Given the complexity of malaria and all the tasks we would need to
 accomplish, it seemed obvious (to me, at least) that adaptive malarial
-control would need to be developed around <a href="Model%20Building/Malaria-Models.html"><em>mechanistic
+control would need to be developed around <strong>simulation-based
+analytics</strong> using <a href="Model%20Building/Malaria-Models.html"><em>mechanistic
 models</em></a>: for synthesis; to develop <a href="Malaria%20Intelligence/Malaria-Intelligence.html"><em>malaria
 intelligence</em></a> in a form that would support analytics; to
 characterize and quantify <a href="Analytics/Uncertainty.html"><em>uncertainty</em></a>; and to
@@ -518,26 +534,89 @@ join the team and help with the writing, please let me know at either of
 the following: <a href="mailto:smitdave@gmail.com">&lt;smitdave@gmail.com&gt;</a> or <a href="mailto:smitdave@uw.edu">&lt;smitdave@uw.edu&gt;</a></p>
 <p>– <a href="Contributors/David-L-Smith.html">David L. Smith</a></p>
 </div>
-<div id="library" class="section level2 tabset tabset-fade tabset-pills">
-<h2 class="tabset tabset-fade tabset-pills">Library</h2>
-<p>Organization and structure of the <strong>RAMP Model
-Library</strong></p>
-<hr />
-<div id="oplus" class="section level3">
-<h3><span class="math inline">\(\oplus\)</span></h3>
-<p>Documents in the RAMP Model Library have been written to cover a lot
-of material with minimal overlap. The Each document has active links to
-closely related documents. The documents are designed cover a single
-topic, and the writing style aims to mimic the style of
-<strong>Numerical Recipes</strong>, which the authors described as being
-<em>…informal, fearlessly editorial, unesoteric, and above all
-useful</em> <span class="citation">[2]</span>.</p>
-<p>The navigation hub (<a href="Nav-Hub.html">HUB</a>) is a map of the
-organization and structure of the RAMP Model Library. At the top are
-some commonly used links, including a link to this document
-(<strong>Library</strong>), a current list of development tasks (<a href="RAMP-Model-Library-dev.html"><code>dev</code></a>), and links to
-<a href="https://dd-harp.github.io/"><strong>HARP</strong></a>, <a href="Lectures/Lectures.html"><strong>Lectures</strong></a>, a guide to
-the RAMP Model Library <a href="Bibliography.html"><strong>Bibliographies</strong></a>, a <a href="Glossary.html"><strong>Glossary</strong></a>, and a list of <a href="Contributors/Contributors.html"><strong>Contributors</strong></a>.</p>
+<div id="software" class="section level2">
+<h2>Software</h2>
+<p>Five software packages have been developed to support
+simulation-based analytics in RAMP:</p>
+<ul>
+<li><p><a href="exDE/exDE.html"><code>exDE</code></a> is a set of
+algorithms to build and solve systems of differential equations
+describing the epidemiology, transmission dynamics, and control of
+malaria and other mosquito-transmitted pathogens. It is an open-access R
+package on <a href="https://github.com/dd-harp/exDE/">github</a>,
+including <a href="https://dd-harp.github.io/exDE/">documentation and
+vignettes</a>.</p></li>
+<li><p><a href="MicroMoB/MicroMoB.html"><code>MicroMoB</code></a> is a
+set of algorithms to build and solve discrete time systems describing
+the epidemiology, transmission dynamics, and control of malaria and
+other mosquito-transmitted pathogens. It is an open-access R package on
+<a href="https://github.com/dd-harp/MicroMoB"><code>github</code></a>,
+including <a href="https://dd-harp.github.io/MicroMoB/">documentation
+and vignettes</a>.</p></li>
+<li><p><a href="mobwork/mobwork.html"><code>mobwork</code></a> is a set
+of algorithms to build an analytics pipeline using <code>exDE</code> and
+<code>MicroMoB.</code> It is an open-access R package on <a href="https://github.com/dd-harp/mobwork"><code>github</code></a>,
+including <a href="https://dd-harp.github.io/mobwork/">documentation and
+vignettes</a>.</p></li>
+<li><p><a href="Memory/Memory.html"><code>pf.memory</code></a> is a set
+of algorithms that implement a probabilistic approach to malaria
+epidemiology, defined in the narrow sense to include exposure,
+infection, disease, immunity, treatment and chemoprotection, and
+detection. It is an open-access R package on <a href="https://github.com/dd-harp/pf.memory/">github</a>, including <a href="https://dd-harp.github.io/pf.memory/">documentation and
+vignettes</a>.</p></li>
+<li><p><a href="Micro/Micro.html"><code>motrap.micro</code></a> is a set
+of algorithms that implement a probabilistic approach to malaria
+epidemiology, defined in the narrow sense to include exposure,
+infection, disease, immunity, treatment and chemoprotection, and
+detection. It is an open-access R package on <a href="https://github.com/dd-harp/motrap.micro/">github</a>, including <a href="https://dd-harp.github.io/motrap.micro/">documentation and
+vignettes</a>.</p></li>
+</ul>
+</div>
+<div id="structure" class="section level2 tabset tabset-fade tabset-pills">
+<h2 class="tabset tabset-fade tabset-pills">Structure</h2>
+<div id="navigation" class="section level3">
+<h3>Navigation</h3>
+<p><strong>Navigation</strong> | The top of every page has links to
+nearby documents.</p>
+<ul>
+<li><p><span class="math inline">\(\oplus\)</span> returns to this
+document.</p></li>
+<li><p><strong><a href="Nav-Hub.html">HUB</a></strong></p></li>
+<li><p><strong><a href="Nav-Hub.html">Map</a></strong></p></li>
+</ul>
+<p>The navigation is a map of the organization and structure of the RAMP
+Model Library.</p>
+</div>
+<div id="malariology" class="section level3">
+<h3>Malariology</h3>
+<ul>
+<li><p><a href="Malaria%20Epidemiology/Malaria-Epidemiology.html">Malaria
+Epidemiology</a></p></li>
+<li><p><a href="Human%20Ecology/Human-Ecology.html">Human
+Ecology</a></p></li>
+<li><p><a href="Human%20Demography/Human-Demography.html">Human
+Demography</a></p></li>
+<li><p><a href="Exposure/Exposure.html">Exposure</a></p></li>
+<li><p><a href="Mosquito/Mosquito.html">Adult Mosquito Ecology and
+Infection Dynamics</a></p></li>
+<li><p><a href="Mosquito/Mosquito.html">Aquatic Mosquito
+Ecology</a></p></li>
+<li><p><a href="Transmission%20Dynamics/Transmission-Dynamics.html">Transmission
+Dynamics</a></p></li>
+</ul>
+</div>
+<div id="analytics" class="section level3">
+<h3>Analytics</h3>
+</div>
+<div id="books" class="section level3">
+<h3>Books</h3>
+<ul>
+<li><p><a href="../Dynamics-Book/_book/index.html" target="_blank"><strong>Applied Malaria Dynamics: Dynamical Systems for
+Adaptive Malaria Control</strong></a>: a primer for model
+building.</p></li>
+<li><p><a href="../RAMP-Book/_book/index.html" target="_blank"><strong>Robust Analytics for Malaria
+Policy</strong></a>: a primary for malaria analytics.</p></li>
+</ul>
 <p>The sections, described in the following tabs, are:</p>
 <ul>
 <li><p><code>Malariology</code></p></li>
@@ -553,7 +632,7 @@ basic documents and concepts. The flow of the documents down the page in
 the <a href="Nav-Hub.html">Navigation Hub</a> reflects a transition from
 basic science to analytics and policy.</p>
 </div>
-<div id="malariology" class="section level3">
+<div id="malariology-1" class="section level3">
 <h3>Malariology</h3>
 <p>This discusses the documents in <a href="Nav-Hub.html">HUB</a> linked
 under the header:</p>
@@ -597,15 +676,12 @@ dynamics, and control that are of general interest to malaria
 programs</p></li>
 </ol>
 <hr />
-<div id="oplus-1" class="section level4">
+<div id="oplus" class="section level4">
 <h4><span class="math inline">\(\oplus\)</span></h4>
 <p>through various kinds of analyses through the development of
 <em>Medical Intelligence</em></p>
 <p>In <strong>Analytics</strong> we discuss some topics that are
 generally useful.</p>
-</div>
-<div id="model-building" class="section level4 tabset tabset-fade tabset-pills">
-<h4 class="tabset tabset-fade tabset-pills">Model Building</h4>
 <!-- The RAMP Model Library was created to help organize all the material I needed to develop [adaptive malaria control](Adaptive Malaria Control/Adaptive-Malaria-Control.html) into a practical methodology. I wanted the methodology to work in Uganda well enough that that it would get replicated elsewhere. It needed a primer, so I started writing [**Robust Analytics for Malaria Policy**](../RAMP-Book/_book/index.html){target="_blank"}. I started writing documents in `bookdown,` a variant of `R markdown,` so I could embed code to teach future analysts and researchers. As I developed the embedded code, I found that I needed a scratch space, so the RAMP Model Library was born.  -->
 <!-- Over time, as the concept of *robust analytics* started to take shape, I organized the RAMP Model Library around the concepts and algorithms that would be needed to build ensembles of models, so I could replicate the analyses with *reasonable alternatives.*  The dream of building RAMP drew my attention to some important gaps, and I started developing new models. The material in the library grew so extensive, it begged for its own primer, so I started writing  [**Applied Malaria Dynamics: Dynamical Systems for Adaptive Malaria Control**](../Dynamics-Book/_book/index.html){target="_blank"}. -->
 <!-- The organization of the RAMP Model Library adapted to my intent to write two books. I organized the directories and files by theme.   I had two books to write, and a lot of overlapping material, but I found myself rewriting some paragraphs more than twice. At the same time, I found I was discussing several topics that that I never wrote about. At this point, I started using the [HUB](Nav-Hub.html) to help me draw a map of the content.  -->
@@ -616,7 +692,7 @@ generally useful.</p>
 </div>
 <div id="boxplus" class="section level2 tabset tabset-fade tabset-pills">
 <h2 class="tabset tabset-fade tabset-pills"><span class="math inline">\(\boxplus\)</span></h2>
-<div id="oplus-2" class="section level3">
+<div id="oplus-1" class="section level3">
 <h3><span class="math inline">\(\oplus\)</span></h3>
 <p>The <code>RAMP-Model-Library</code> includes a massive collection of
 documents that take a fairly comprehensive approach to malaria
@@ -728,7 +804,7 @@ micro-epidemiology</p></li>
 malaria epidemiology.</p></li>
 </ul>
 </div>
-<div id="model-building-1" class="section level4">
+<div id="model-building" class="section level4">
 <h4>Model Building</h4>
 <p><a href="Model%20Building/Model-Building.html"><strong>Model
 Building</strong></a> is a core activity for simulation-based
@@ -754,7 +830,7 @@ double-indexed sums seem a bit messy.</p></li>
 <div id="computation" class="section level4">
 <h4>Computation</h4>
 </div>
-<div id="analytics" class="section level4">
+<div id="analytics-1" class="section level4">
 <h4>Analytics</h4>
 <ul>
 <li><p><strong>Data Systems</strong> (needs to be organized)</p></li>
@@ -766,14 +842,14 @@ Estimation</a></p></li>
 </ul>
 </div>
 </div>
-<div id="software" class="section level3">
+<div id="software-1" class="section level3">
 <h3>Software</h3>
 <ul>
 <li><p><code>exDE</code> software repositories at <a href="https://CRAN.R-project.org/package=exDE">CRAN</a> and <a href="https://github.com/dd-harp/exDE" target="_blank">github</a>.</p></li>
 <li><p><code>MicroMoB</code> repository at <a href="https://cran.r-project.org/package=MicroMoB" target="_blank">CRAN</a></p></li>
 </ul>
 </div>
-<div id="books" class="section level3">
+<div id="books-1" class="section level3">
 <h3>Books</h3>
 <ul>
 <li><p><a href="../Dynamics-Book/_book/index.html" target="_blank"><strong>Applied Malaria Dynamics: Dynamical Systems for
@@ -783,6 +859,16 @@ building.</p></li>
 Policy</strong></a>: a primary for malaria analytics.</p></li>
 </ul>
 </div>
+</div>
+<div id="style" class="section level2">
+<h2>Style</h2>
+<p>Documents in the RAMP Model Library have been written to cover a lot
+of material with minimal overlap. The Each document has active links to
+closely related documents. The documents are designed cover a single
+topic, and the writing style aims to mimic the style of
+<strong>Numerical Recipes</strong>, which the authors described as being
+<em>…informal, fearlessly editorial, unesoteric, and above all
+useful</em> <span class="citation">[2]</span>.</p>
 </div>
 <div id="dagger" class="section level2 tabset tabset-fade tabset-pills">
 <h2 class="tabset tabset-fade tabset-pills"><span class="math inline">\(\dagger\)</span></h2>

@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2023-10-10" />
+<meta name="date" content="2024-01-02" />
 
 <title>Malaria Transmission Dynamics</title>
 
@@ -264,6 +264,28 @@ if (window.hljs) {
 
 
 
+<style type="text/css">
+
+div.csl-bib-body { }
+div.csl-entry {
+clear: both;
+}
+.hanging div.csl-entry {
+margin-left:2em;
+text-indent:-2em;
+}
+div.csl-left-margin {
+min-width:2em;
+float:left;
+}
+div.csl-right-inline {
+margin-left:2em;
+padding-left:1em;
+}
+div.csl-indent {
+margin-left: 2em;
+}
+</style>
 
 
 
@@ -362,7 +384,7 @@ display: none;
 
 
 <h1 class="title toc-ignore">Malaria Transmission Dynamics</h1>
-<h4 class="date">October 10, 2023</h4>
+<h4 class="date">January 02, 2024</h4>
 
 </div>
 
@@ -375,14 +397,38 @@ display: none;
 <h1 class="tabset tabset-fade tabset-pills"></h1>
 <div id="odot" class="section level2 tabset tabset-fade tabset-pills">
 <h2 class="tabset tabset-fade tabset-pills"><span class="math inline">\(\odot\)</span></h2>
-<hr />
-<p>Transmission Dynamics</p>
-<hr />
-<p><code>Abstract</code> – What is RAMP?</p>
-<p><span class="math inline">\(\boxplus\)</span> – links to vignettes
-&amp; supporting documents</p>
-<p><a href="#dagger"><span class="math inline">\(\dagger\)</span></a> –
-document information, including references</p>
+<p>Malaria transmission dynamics provide a unifying construct for
+malaria control. The study of malaria transmission draws on a rich set
+of supporting concepts, which are covered in detail in topical
+vignettes, which can be accessed through discussions of <a href="../Mosquito/Mosquito.html">Mosquitoes</a> or <a href="../Malaria%20Epidemiology/Malaria-Epidemiology.html">Malaria
+Epidemiology</a>. The task here is to focus on the emergent properties
+of human malaria parasite’s two host species – the human, and the
+mosquito – to give us a coherent picture.</p>
+<ul>
+<li><p>The concept of <a href="Transmission.html">transmission</a>,
+defined in the narrow sense to describe parasites moving from humans to
+mosquitoes or <em>vice versa</em>, occurs during blood feeding, which is
+the endpoint of mosquito searching and humans spending time at
+risk.</p></li>
+<li><p>A unifying concept is a <a href="Reproductive-Numbers.html">basic
+reproductive number, <span class="math inline">\(R_0\)</span></a>, which
+provides a threshold condition for endemic malaria. We discuss <a href="Heterogeneous-Transmission.html">Heterogeneous Transmission</a>
+and the concept of a reproductive number in <a href="Finite_Rc.Rmd">small populations</a>.</p></li>
+<li><p><a href="Spatial-Dynamics.html">Spatial Dynamics</a> were
+described in some detail on our paper on <em>Spatial Dynamics of Malaria
+Transmission</em> <span class="citation">[<a href="#ref-WuSL2023SpatialDynamics">1</a>]</span>, but we have more to
+say here, including longer discussions of <a href="Microsimulation.html">Microsimulation</a> and <a href="Connectivity.html">Connectivity</a>.</p></li>
+<li><p>Transmission in models with <a href="Multiple-Species.html">Multiple Species</a>, whether host or
+mosquito, can also be considered.</p></li>
+<li><p>The concept of <a href="../Mosquito/Exogenous-Forcing.html">Exogenous Forcing</a> by
+weather and other factors was covered in some detail, but here we look
+at <a href="Temporal.html">Temporal</a> factors in greater detail,
+including <a href="Seasonality.html">Seasonality</a> and <a href="SeasonalRc.html"><span class="math inline">\(R_C\)</span> in
+seasonal environments</a></p></li>
+<li><p>In some cases, malaria transmission could have a <a href="BackwardsBifurcations.html">Backwards Bifurcation</a> that makes
+it more difficult to eliminate malaria, but that also contributes to the
+stability of malaria elimination <span class="citation">[<a href="#ref-SmithDL2013StickySituation">2</a>,<a href="#ref-ChiyakaC2013Sticky">3</a>]</span></p></li>
+</ul>
 </div>
 <div id="abstract" class="section level2">
 <h2>Abstract</h2>
@@ -398,6 +444,26 @@ Epidemiology</a> – <a href="../Mosquito/Transmission%20Dynamics.html">Mosquito
 </div>
 <div id="dagger" class="section level2 tabset tabset-fade tabset-pills">
 <h2 class="tabset tabset-fade tabset-pills"><span class="math inline">\(\dagger\)</span></h2>
+<p><strong>References</strong></p>
+<div id="refs" class="references csl-bib-body">
+<div id="ref-WuSL2023SpatialDynamics" class="csl-entry">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">Wu
+SL, Henry JM, Citron DT, Ssebuliba DM, Nsumba JN, C HMS, et al. Spatial
+dynamics of malaria transmission. PLOS Computational Biology. 2023;19:
+e1010684. doi:<a href="https://doi.org/10.1371/journal.pcbi.1010684">10.1371/journal.pcbi.1010684</a></div>
+</div>
+<div id="ref-SmithDL2013StickySituation" class="csl-entry">
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">Smith DL, Cohen JM, Chiyaka C, Johnston G,
+Gething PW, Gosling R, et al. A sticky situation: The unexpected
+stability of malaria elimination. Philos Trans R Soc Lond B Biol Sci.
+2013;368: 20120145. doi:<a href="https://doi.org/10.1098/rstb.2012.0145">10.1098/rstb.2012.0145</a></div>
+</div>
+<div id="ref-ChiyakaC2013Sticky" class="csl-entry">
+<div class="csl-left-margin">3. </div><div class="csl-right-inline">Chiyaka C, Tatem AJ, Cohen JM, Gething PW,
+Johnston G, Gosling R, et al. Infectious disease. <span>The</span>
+stability of malaria elimination. Science. 2013;339: 909–910. doi:<a href="https://doi.org/10.1126/science.1229509">10.1126/science.1229509</a></div>
+</div>
+</div>
 </div>
 </div>
 
